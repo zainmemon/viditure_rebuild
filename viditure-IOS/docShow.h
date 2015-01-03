@@ -11,7 +11,7 @@
 #import "customPopUp.h"
 
 @interface docShow : UIViewController<UIScrollViewDelegate , UITextFieldDelegate>
-
+-(void)hello;
 @property (weak, nonatomic) IBOutlet UIButton *start_vidturing;
 - (IBAction)vidture_action:(id)sender;
 

@@ -9,6 +9,7 @@
 #import "docShow.h"
 #import <QuartzCore/QuartzCore.h>
 #import "customPopUp.h"
+#import "WebService.h"
 
 @interface docShow (){
     FirstPopUp *firstPopUp;
@@ -81,6 +82,10 @@
 
 -(void) FetchSchoolList
 {
+    WebService *w = [[WebService alloc]init];
+    [w FilePath:@"http://dev.viditure.com/vts/signrequest/54a6eeb0e4b007dd2fc5beb8"parameterOne:nil];
+    
+    
     docImage  = @"http://54.183.77.229:8080/rbs/documents/53f8d90ae4b0e2d5a4aae1c6/pages/0/image";
     
 //    CGRect rect=CGRectMake(0,110,400,250);
@@ -123,10 +128,16 @@
 -(void)labelTap{
     custom = [[customPopUp alloc] initWithNibName:@"customPopUp" bundle:nil];
     [custom showInView:self.view animated:YES];
+    
+}
+
+-(void)hello{
+    
 }
 
 +(void)setText{
-
+    
+    //docShow.self.testing_label.text = [customPopUp returnpopUpString];
     NSLog(@"the testing string is %@",[customPopUp returnpopUpString]);
     
 }

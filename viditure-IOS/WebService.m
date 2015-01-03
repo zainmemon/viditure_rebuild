@@ -13,7 +13,31 @@ NSDictionary *greeting;
 
 -(NSDictionary*)FilePath:(NSString*)filepath parameterOne:(NSString*)parameterOne parameterTwo:(NSString*)parameterTwo parameterThree:(NSString*)parameterThree
 {
-    NSURL *jsonFileUrl = [NSURL URLWithString:filepath];
+    NSMutableURLRequest *theRequest=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:[filepath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]
+                                                            cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
+                                                        timeoutInterval:60.0];
+    //do post request for parameter passing
+    [theRequest setHTTPMethod:@"POST"];
+    
+    //set the content type to JSON
+    [theRequest setValue:@"json" forHTTPHeaderField:@"Content-Type"];
+    
+    //passing key as a http header request
+    [theRequest addValue:@"54a7afc9e4b007dd2fc5bf07" forHTTPHeaderField:@"X-Auth-Token"];
+    
+    
+    NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
+    
+    if( theConnection )
+    {
+        return greeting;
+        
+    }
+    else
+    {
+        NSLog(@"theConnection is NULL");
+        return 0;
+    }
     
     // Create the NSURLConnection
     //NSString * username = [[NSUserDefaults standardUserDefaults] stringForKey:@"name"];
@@ -37,7 +61,6 @@ NSDictionary *greeting;
   //  NSLog(@"JsonArray %@", jsonArray);
     
     // return response;
-    return greeting;
 }
 
 -(NSArray*)FilePath:(NSString*)filepath parameterOne:(NSString*)parameterOne
