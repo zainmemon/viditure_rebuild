@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:AVCamPreviewView.h">
+   </FileRef>
+   <FileRef
+      location = "group:AVCamPreviewView.m">
+   </FileRef>
+   <FileRef
+      location = "group:PopUpViewController.h">
+   </FileRef>
+   <FileRef
+      location = "group:PopUpViewController.m">
+   </FileRef>
+   <FileRef
+      location = "group:PopUpViewController.xib">
+   </FileRef>
+   <FileRef
+      location = "group:Second.xib">
+   </FileRef>
+   <FileRef
+      location = "group:secondPopUp.h">
+   </FileRef>
+   <FileRef
+      location = "group:secondPopUp.m">
+   </FileRef>
+   <FileRef
+      location = "group:Third.xib">
+   </FileRef>
+   <FileRef
+      location = "group:thirdPopUp.h">
+   </FileRef>
+   <FileRef
+      location = "group:thirdPopUp.m">
+   </FileRef>
+   <FileRef
+      location = "group:ViewController.h">
+   </FileRef>
+   <FileRef
+      location = "group:ViewController.m">
+   </FileRef>
+   <FileRef
+      location = "group:Login.h">
+   </FileRef>
+   <FileRef
+      location = "group:Login.m">
+   </FileRef>
+   <FileRef
+      location = "group:Register.h">
+   </FileRef>
+   <FileRef
+      location = "group:Register.m">
+   </FileRef>
+   <FileRef
+      location = "group:Documents.h">
+   </FileRef>
+   <FileRef
+      location = "group:Documents.m">
+   </FileRef>
+   <FileRef
+      location = "group:docShow.h">
+   </FileRef>
+   <FileRef
+      location = "group:docShow.m">
+   </FileRef>
+   <FileRef
+      location = "group:TestCamera.h">
+   </FileRef>
+   <FileRef
+      location = "group:TestCamera.m">
+   </FileRef>
+   <FileRef
+      location = "group:AVCamViewController.h">
+   </FileRef>
+   <FileRef
+      location = "group:AVCamViewController.m">
+   </FileRef>
+   <FileRef
+      location = "container:">
+   </FileRef>
+</Workspace>
