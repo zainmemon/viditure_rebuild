@@ -13,9 +13,12 @@
 
 @end
 
-@implementation customPopUp
+@implementation customPopUp{
+    docShow *d;
+}
 
 static NSString *popupString;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -47,6 +50,10 @@ static NSString *popupString;
 
 - (void)removeAnimate
 {
+    [docShow setText];
+    d = [[docShow alloc]init];
+    [d kardeChange];
+    
     [UIView animateWithDuration:.25 animations:^{
         self.view.transform = CGAffineTransformMakeScale(1.3, 1.3);
         self.view.alpha = 0.0;
@@ -56,7 +63,8 @@ static NSString *popupString;
         }
     }];
     
-    [docShow setText];
+    
+    
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {

@@ -11,16 +11,19 @@
 #import "customPopUp.h"
 #import "WebService.h"
 
-@interface docShow (){
+@interface docShow ()
+{
     FirstPopUp *firstPopUp;
     UIImageView *imageView;
     UITextField *signature;
     UIView *tempView;
     customPopUp *custom;
+    NSString *myString;
 }
 @end
 
-@implementation docShow{
+@implementation docShow
+{
     NSString * docImage;
 }
 
@@ -36,7 +39,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     // Do any additional setup after loading the view.
     [self FetchSchoolList];
     [self.view addSubview:self.scroll];
@@ -48,12 +51,8 @@
     UITapGestureRecognizer *tapGesture =
     [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(labelTap)];
     [self.testing_label addGestureRecognizer:tapGesture];
+    [self.testing_label setTextColor:[UIColor blackColor]];
     
-}
-
--(void)viewWillAppear:(BOOL)animated{
-    
-    [super viewWillAppear:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -67,7 +66,6 @@
 - (IBAction)vidture_action:(id)sender {
 
     //firstPopUp = [[FirstPopUp alloc] initWithNibName:@"FirstPopUp" bundle:nil];
-
     //[firstPopUp showInView:self.view animated:YES];
     
     custom = [[customPopUp alloc] initWithNibName:@"customPopUp" bundle:nil];
@@ -76,15 +74,16 @@
     NSLog(@"the testing string is %@",[customPopUp returnpopUpString]);
     
     self.testing_label.text = [customPopUp returnpopUpString];
-    [self.testing_label setTextColor:[UIColor blackColor]];
+    
     
 }
 
 -(void) FetchSchoolList
 {
     WebService *w = [[WebService alloc]init];
-    [w FilePath:@"http://dev.viditure.com/vts/signrequest/54a6eeb0e4b007dd2fc5beb8"parameterOne:nil];
+    //[w FilePath:@"http://dev.viditure.com/vts/signrequest/54a6eeb0e4b007dd2fc5beb8"parameterOne:nil];
     
+    //[w returnImageData:@"http://dev.viditure.com/vts/signrequest/54a6eeb0e4b007dd2fc5beb8"];
     
     docImage  = @"http://54.183.77.229:8080/rbs/documents/53f8d90ae4b0e2d5a4aae1c6/pages/0/image";
     
@@ -94,7 +93,7 @@
     NSURL *VendorImageUrl = [NSURL URLWithString:docImage];
     tempView = [[UIView alloc]initWithFrame:CGRectMake(0,0,320,1000)];
     NSData *data = [[NSData alloc]initWithContentsOfURL:VendorImageUrl];
-    UIImage *img = [[UIImage alloc]initWithData:data];
+    UIImage *img = [[UIImage alloc]initWithData:[w returnImageData:@"http://dev.viditure.com/vts/signrequest/54a6eeb0e4b007dd2fc5beb8"]];
     
     signature = [[UITextField alloc]initWithFrame:CGRectMake(80,100,150,30)];
     [signature setBorderStyle:UITextBorderStyleRoundedRect];
@@ -117,28 +116,61 @@
 -(UIView *) viewForZoomingInScrollView:(UIScrollView *)scrollView
 {
     return tempView;
-
 }
 
--(BOOL) textFieldShouldReturn:(UITextField *)textField{
+-(BOOL) textFieldShouldReturn:(UITextField *)textField
+{
     [textField resignFirstResponder];
     return YES;
 }
 
--(void)labelTap{
+-(void)labelTap
+{
     custom = [[customPopUp alloc] initWithNibName:@"customPopUp" bundle:nil];
     [custom showInView:self.view animated:YES];
     
 }
-
--(void)hello{
++ (docShow *)sharedInstance {
+    // Singleton implementation
+    static docShow* instance;
+    instance = [[docShow alloc] init];
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        instance = [[docShow alloc] init];
+    });
     
+    return instance;
+}
+
+-(void)textChangingTime{
+    NSLog(@"hi");
+    myString = [customPopUp returnpopUpString];
+    [self.start_vidturing setTitle:[customPopUp returnpopUpString] forState:UIControlStateNormal];
+    [self.start_vidturing setBackgroundColor:[UIColor orangeColor]];
+    self.testing_label.text = myString;
+    
+    [self.testing_label setTextColor:[UIColor blackColor]];
+    NSLog(@"the string in method is %@",myString);
+    [self kardeChange];
+}
+
+-(void)kardeChange{
+    NSLog(@"hello");
+    myString = [customPopUp returnpopUpString];
+    [self.start_vidturing setTitle:[customPopUp returnpopUpString] forState:UIControlStateNormal];
+    [self.start_vidturing setBackgroundColor:[UIColor orangeColor]];
+    self.testing_label.text = myString;
+    
+    [self.testing_label setTextColor:[UIColor blackColor]];
 }
 
 +(void)setText{
     
     //docShow.self.testing_label.text = [customPopUp returnpopUpString];
     NSLog(@"the testing string is %@",[customPopUp returnpopUpString]);
+    
+    [docShow sharedInstance];
+    [[docShow sharedInstance]textChangingTime];
     
 }
 

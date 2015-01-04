@@ -75,5 +75,25 @@ NSDictionary *greeting;
     NSArray * responseArray = [self FilePath:filepath parameterOne:parameterOne parameterTwo:parameterTwo parameterThree:nil];
     return responseArray;
 }
+-(NSData *)returnImageData:(NSString *)URL{
+NSURL *theURL = [NSURL URLWithString:URL];
+NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:theURL      cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:20.0f];
 
+//Specify method of request(Get or Post)
+[theRequest setHTTPMethod:@"GET"];
+
+//Pass some default parameter(like content-type etc.)
+[theRequest setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+[theRequest setValue:@"application/json; charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
+
+//Now pass your own parameter
+
+[theRequest setValue:@"54a7afc9e4b007dd2fc5bf07" forHTTPHeaderField:@"X-Auth-Token"];
+
+NSURLResponse *theResponse = NULL;
+NSError *theError = NULL;
+NSData *theResponseData = [NSURLConnection sendSynchronousRequest:theRequest returningResponse:&theResponse error:&theError];
+    
+    return theResponseData;
+}
 @end

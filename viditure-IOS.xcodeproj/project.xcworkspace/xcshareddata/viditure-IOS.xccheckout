@@ -5,34 +5,34 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>611D0ED9-0549-4DB7-871A-1F62947F4CA6</string>
+	<string>7DCDC940-75DE-4536-AEEF-ADE59466B5A4</string>
 	<key>IDESourceControlProjectName</key>
 	<string>viditure-IOS</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>FB412C9B22DE9B7C5209D0884287D93D0EDFB5E7</key>
+		<key>5EB39534-0151-49EC-B821-358FC026DBAB</key>
 		<string>https://github.com/zainmemon/viditure_rebuild.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>viditure-IOS.xcodeproj</string>
+	<string>viditure-IOS.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>FB412C9B22DE9B7C5209D0884287D93D0EDFB5E7</key>
+		<key>5EB39534-0151-49EC-B821-358FC026DBAB</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/zainmemon/viditure_rebuild.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>111</integer>
+	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>FB412C9B22DE9B7C5209D0884287D93D0EDFB5E7</string>
+	<string>5EB39534-0151-49EC-B821-358FC026DBAB</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>FB412C9B22DE9B7C5209D0884287D93D0EDFB5E7</string>
+			<string>5EB39534-0151-49EC-B821-358FC026DBAB</string>
 			<key>IDESourceControlWCCName</key>
 			<string>viditure_rebuild</string>
 		</dict>

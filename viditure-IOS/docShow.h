@@ -11,13 +11,13 @@
 #import "customPopUp.h"
 
 @interface docShow : UIViewController<UIScrollViewDelegate , UITextFieldDelegate>
--(void)hello;
+
 @property (weak, nonatomic) IBOutlet UIButton *start_vidturing;
 - (IBAction)vidture_action:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scroll;
 @property (strong, nonatomic) IBOutlet UILabel *testing_label;
 @property (nonatomic, retain) NSString* inputData;
-
+-(void)kardeChange;
 +(void)setText;
 @end
