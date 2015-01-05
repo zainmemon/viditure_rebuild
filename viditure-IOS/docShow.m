@@ -19,6 +19,8 @@
     UIView *tempView;
     customPopUp *custom;
     NSString *myString;
+    NSMutableDictionary *completeData;
+    NSMutableArray *Data;
 }
 @end
 
@@ -80,20 +82,27 @@
 
 -(void) FetchSchoolList
 {
-    WebService *w = [[WebService alloc]init];
-    //[w FilePath:@"http://dev.viditure.com/vts/signrequest/54a6eeb0e4b007dd2fc5beb8"parameterOne:nil];
+    WebService *web = [[WebService alloc]init];
+    completeData = [web FilePath:@"http://dev.viditure.com/vts/signrequest/54a6eeb0e4b007dd2fc5beb8"parameterOne:nil];
     
-    //[w returnImageData:@"http://dev.viditure.com/vts/signrequest/54a6eeb0e4b007dd2fc5beb8"];
+    Data = [completeData valueForKey:@"dataArray"];
     
-    docImage  = @"http://54.183.77.229:8080/rbs/documents/53f8d90ae4b0e2d5a4aae1c6/pages/0/image";
+    NSString *authTokenValue = [[completeData valueForKey:@"Headers"]valueForKey:@"X-Auth-Token"];
     
+    NSLog(@"the header is %@", authTokenValue);
+    
+    NSLog(@"the data length is: %d",[Data count]);
 //    CGRect rect=CGRectMake(0,110,400,250);
 //    [self.scroll setFrame:rect];
-    
-    NSURL *VendorImageUrl = [NSURL URLWithString:docImage];
+
+    NSLog(@"the _id is: %@",[[[[[Data valueForKey:@"pages"]valueForKey:@"fields"]valueForKey:@"kind"]valueForKey:@"type" ] objectAtIndex:0]);
     tempView = [[UIView alloc]initWithFrame:CGRectMake(0,0,320,1000)];
-    NSData *data = [[NSData alloc]initWithContentsOfURL:VendorImageUrl];
-    UIImage *img = [[UIImage alloc]initWithData:[w returnImageData:@"http://dev.viditure.com/vts/signrequest/54a6eeb0e4b007dd2fc5beb8"]];
+    
+    NSData *imageData = [web returnImageData:@"http://dev.viditure.com/vts/documents/54a6ee80e4b007dd2fc5beb6/pages/0/image" AuthTokenValue:authTokenValue];
+    
+    UIImage *img = [[UIImage alloc]initWithData:imageData];
+    
+    //NSLog(@"the image is: %@",img);
     
     signature = [[UITextField alloc]initWithFrame:CGRectMake(80,100,150,30)];
     [signature setBorderStyle:UITextBorderStyleRoundedRect];

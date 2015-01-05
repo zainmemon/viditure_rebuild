@@ -10,9 +10,9 @@
 
 @interface WebService : NSObject
 
--(NSArray*)FilePath:(NSString*)filepath parameterOne:(NSString*)parameterOne parameterTwo:(NSString*)parameterTwo parameterThree:(NSString*)parameterThree;
--(NSArray*)FilePath:(NSString*)filepath parameterOne:(NSString*)parameterOne parameterTwo:(NSString*)parameterTwo;
--(NSArray*)FilePath:(NSString*)filepath parameterOne:(NSString*)parameterOne;
+-(NSMutableDictionary*)FilePath:(NSString*)filepath parameterOne:(NSString*)parameterOne parameterTwo:(NSString*)parameterTwo parameterThree:(NSString*)parameterThree;
+-(NSMutableDictionary*)FilePath:(NSString*)filepath parameterOne:(NSString*)parameterOne parameterTwo:(NSString*)parameterTwo;
+-(NSMutableDictionary*)FilePath:(NSString*)filepath parameterOne:(NSString*)parameterOne;
 
--(NSData *)returnImageData:(NSString *)URL;
+-(NSData *)returnImageData:(NSString *)URL AuthTokenValue:(NSString *)token;
 @end
