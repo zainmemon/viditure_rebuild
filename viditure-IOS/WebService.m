@@ -29,16 +29,14 @@
     NSURLResponse *theResponse = NULL;
     NSError *theError = NULL;
     NSData *theResponseData = [NSURLConnection sendSynchronousRequest:theRequest returningResponse:&theResponse error:&theError];
-    NSDictionary *dataDictionaryResponse = [NSJSONSerialization JSONObjectWithData:theResponseData options:0 error:&theError];
-   // NSLog(@"url to send request= %@",theURL);
-    //NSLog(@"%@",dataDictionaryResponse);
+//    NSDictionary *dataDictionaryResponse = [NSJSONSerialization JSONObjectWithData:theResponseData options:0 error:&theError];
     
-    NSString *response = [[NSString alloc] initWithBytes:[theResponseData bytes] length:[theResponseData length] encoding:NSUTF8StringEncoding];
+//    NSString *response = [[NSString alloc] initWithBytes:[theResponseData bytes] length:[theResponseData length] encoding:NSUTF8StringEncoding];
 
-        NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData: theResponseData options: NSJSONReadingMutableContainers error: nil];
+    NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData: theResponseData options: NSJSONReadingMutableContainers error: nil];
 
-       // NSLog(@"Response String: %@",response);
-        NSLog(@"JsonArray %@", jsonArray);
+    // NSLog(@"Response String: %@",response);
+   // NSLog(@"JsonArray %@", jsonArray);
     
     NSDictionary* headers = [(NSHTTPURLResponse *)theResponse allHeaderFields];
     NSLog(@"the header are %@",[headers valueForKey:@"X-Auth-Token"]);
@@ -51,9 +49,9 @@
     return completeData;
     
 //    NSURL *jsonFileUrl = [NSURL URLWithString:filepath];
-//    
+    
 //    NSString *myRequestString = [NSString stringWithFormat:@"parameterOne=%@&parameterTwo=%@&parameterThree=%@&session=%@",parameterOne,parameterTwo,parameterThree,@"storedsession"];
-//    
+    
 //    // Create Data from request
 //    NSData *myRequestData = [NSData dataWithBytes: [myRequestString UTF8String] length: [myRequestString length]];
 //    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL: jsonFileUrl];
