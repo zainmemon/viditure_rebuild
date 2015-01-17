@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "FirstPopUp.h"
 #import "customPopUp.h"
+#import "secondPopUp.h"
 
 @interface docShow : UIViewController<UIScrollViewDelegate , UITextFieldDelegate>
 

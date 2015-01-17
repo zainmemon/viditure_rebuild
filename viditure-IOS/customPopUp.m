@@ -19,7 +19,6 @@
 
 static NSString *popupString;
 
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -33,7 +32,6 @@ static NSString *popupString;
 - (void)viewDidLoad
 {
     self.view.backgroundColor=[[UIColor blackColor] colorWithAlphaComponent:.6];
-
     [super viewDidLoad];
     
 }
@@ -41,9 +39,7 @@ static NSString *popupString;
 - (void)showAnimate
 {
     self.view.transform = CGAffineTransformMakeScale(1.3, 1.3);
-    //self.view.alpha = 0;
     [UIView animateWithDuration:.25 animations:^{
-        // self.view.alpha = 1;
         self.view.transform = CGAffineTransformMakeScale(1, 1);
     }];
 }
@@ -62,8 +58,6 @@ static NSString *popupString;
             [self.view removeFromSuperview];
         }
     }];
-    
-    
     
 }
 
@@ -92,7 +86,6 @@ static NSString *popupString;
 }
 
 - (IBAction)okay_button:(id)sender{
-    popupString = self.full_name.text;
     [self removeAnimate];
 }
 

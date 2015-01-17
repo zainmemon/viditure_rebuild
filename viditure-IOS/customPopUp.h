@@ -13,7 +13,6 @@
 @interface customPopUp : UIViewController
 - (void)showInView:(UIView *)aView animated:(BOOL)animated;
 
-@property (weak, nonatomic) IBOutlet UITextField *full_name;
 - (IBAction)okay_button:(id)sender;
 - (IBAction)cancel_button:(id)sender;
 

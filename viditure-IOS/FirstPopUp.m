@@ -64,9 +64,7 @@
 - (void)showAnimate
 {
     self.view.transform = CGAffineTransformMakeScale(1.3, 1.3);
-    //self.view.alpha = 0;
     [UIView animateWithDuration:.25 animations:^{
-       // self.view.alpha = 1;
         self.view.transform = CGAffineTransformMakeScale(1, 1);
     }];
 }
@@ -104,10 +102,8 @@
 }
 
 - (IBAction)callThirdPopUp:(id)sender {
-//    third = [[thirdPopUp alloc] initWithNibName:@"Third" bundle:nil];
-//    //third.mydate = self.Date.text;
-//    [third showInView:self.view animated:YES];
 
+    [self removeAnimate];
 }
 
 - (void)didReceiveMemoryWarning
@@ -120,26 +116,9 @@
     [self removeAnimate];
 }
 
-- (IBAction)eSignature:(id)sender {
-//    second = [[secondPopUp alloc] initWithNibName:@"Second" bundle:nil];
-//    second.alphaValue = 0.0f;
-//    //third.mydate = self.Date.text;
-//    [second showInView:self.view animated:YES];
-}
-
 -(BOOL) textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
-        self.popUpView.center = CGPointMake(originalCenter.x, originalCenter.y+50);
     return YES;
 }
 
-- (BOOL)textViewShouldBeginEditing:(UITextView *)textView{
-    NSLog(@"textViewShouldBeginEditing:");
-    return YES;
-}
-
-- (void)textViewDidBeginEditing:(UITextView *)textView{
-    
-    self.popUpView.center = CGPointMake(originalCenter.x, originalCenter.y-50);
-}
 @end

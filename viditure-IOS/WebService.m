@@ -24,7 +24,7 @@
     [theRequest setValue:@"application/json; charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
     //Now pass your own parameter
     
-    [theRequest setValue:@"androidapp" forHTTPHeaderField:@"X-Viditure-App"];
+    [theRequest setValue:@"iosapp" forHTTPHeaderField:@"X-Viditure-App"];
     
     NSURLResponse *theResponse = NULL;
     NSError *theError = NULL;
@@ -39,7 +39,6 @@
    // NSLog(@"JsonArray %@", jsonArray);
     
     NSDictionary* headers = [(NSHTTPURLResponse *)theResponse allHeaderFields];
-    NSLog(@"the header are %@",[headers valueForKey:@"X-Auth-Token"]);
     
     completeData = [[NSMutableDictionary alloc]init];
     

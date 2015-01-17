@@ -23,6 +23,5 @@
 @property (weak, nonatomic) IBOutlet UITextField *initials;
 
 - (IBAction)remove:(id)sender;
-- (IBAction)eSignature:(id)sender;
 
 @end
