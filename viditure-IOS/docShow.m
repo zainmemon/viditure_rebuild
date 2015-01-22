@@ -64,7 +64,7 @@
     
     
     // Do any additional setup after loading the view.
-    [self FetchSchoolList];
+    [self LoadPages];
     [self.view addSubview:self.scroll];
     signature.delegate = self;
     
@@ -105,14 +105,14 @@
     
 }
 
--(void) FetchSchoolList
+-(void) LoadPages
 {
     //    CGRect rect=CGRectMake(0,110,400,250);
     //    [self.scroll setFrame:rect];
     
     
     WebService *web = [[WebService alloc]init];
-    completeData = [web FilePath:@"http://dev.viditure.com/vts/signrequest/54a6eeb0e4b007dd2fc5beb8"parameterOne:nil];
+    completeData = [web FilePath:@"http://test.viditure.com/vts/signrequest/54bd03b8e4b02e50bf3d3a94"parameterOne:nil];
     Data = [completeData valueForKey:@"dataArray"];
     NSString *authTokenValue = [[completeData valueForKey:@"Headers"]valueForKey:@"X-Auth-Token"];
     unsigned long pages_length = [[Data valueForKey:@"pages"]count];
