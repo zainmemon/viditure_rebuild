@@ -46,7 +46,7 @@ static NSString *popupString;
 
 - (void)removeAnimate
 {
-    [docShow setText];
+    [docShow sharedInstance];
     d = [[docShow alloc]init];
     [d kardeChange];
     

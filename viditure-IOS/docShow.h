@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scroll;
 @property (strong, nonatomic) IBOutlet UILabel *testing_label;
 @property (nonatomic, retain) NSString* inputData;
++ (docShow *)sharedInstance;
 -(void)kardeChange;
 +(void)setText;
 @end

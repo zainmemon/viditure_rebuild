@@ -119,11 +119,11 @@
     unsigned long fields_length;
     tempView = [[UIView alloc]initWithFrame:CGRectMake(0,0,320,pages_length * 400)];
     
-    for(int i =0;i<pages_length;i++){
+    for(int i =0;i<2;i++){
           //  NSLog(@"the _id is: %@",[[[Data valueForKey:@"pages"]valueForKey:@"pageImage_url"] objectAtIndex:i]);
     
         fields_length = [[[[Data valueForKey:@"pages"]objectAtIndex:i] valueForKey:@"fields"] count];
-       // NSLog(@"the feilds length is: %lu",fields_length);
+        NSLog(@"the feilds length is: %lu",fields_length);
         
         
        // NSLog(@"The UiElement width is: %f",UiElement_width);
@@ -177,7 +177,7 @@
 
         page_width = [[[[[Data valueForKey:@"pages"]valueForKey:@"pagePosition"]valueForKey:@"width" ] objectAtIndex:i]floatValue];
         page_height = [[[[[Data valueForKey:@"pages"]valueForKey:@"pagePosition"]valueForKey:@"height" ] objectAtIndex:i]floatValue];
-        page_bottom = [[[[[Data valueForKey:@"pages"]valueForKey:@"pagePosition"]valueForKey:@"bottom" ] objectAtIndex:i]floatValue];
+       // page_bottom = [[[[[Data valueForKey:@"pages"]valueForKey:@"pagePosition"]valueForKey:@"bottom" ] objectAtIndex:i]floatValue];
         
         width_ratio = screenWidth / page_width;
         height_ratio = screenHeight / page_height;
@@ -187,11 +187,13 @@
     if(fields_length>0){
         for(int k=0; k <fields_length; k ++){
             
-            field_top = [[[[[[[Data valueForKey:@"pages"]valueForKey:@"fields"]valueForKey:@"screenPos"]objectAtIndex:0]valueForKey:@"top"] objectAtIndex:k]floatValue];
-            field_bottom = [[[[[[[Data valueForKey:@"pages"]valueForKey:@"fields"]valueForKey:@"screenPos"]objectAtIndex:0]valueForKey:@"bottom"] objectAtIndex:k]floatValue];
-            field_left = [[[[[[[Data valueForKey:@"pages"]valueForKey:@"fields"]valueForKey:@"screenPos"]objectAtIndex:0]valueForKey:@"left"] objectAtIndex:k]floatValue];
-            field_width = [[[[[[[Data valueForKey:@"pages"]valueForKey:@"fields"]valueForKey:@"screenPos"]objectAtIndex:0]valueForKey:@"width"] objectAtIndex:k]floatValue];
-            field_height =[[[[[[[Data valueForKey:@"pages"]valueForKey:@"fields"]valueForKey:@"screenPos"]objectAtIndex:0]valueForKey:@"height"] objectAtIndex:k]floatValue];
+            NSLog(@"times in loop %d",k);
+            
+            field_top = [[[[[[[Data valueForKey:@"pages"]valueForKey:@"fields"]valueForKey:@"screenPos"]objectAtIndex:i]valueForKey:@"top"] objectAtIndex:k]floatValue];
+          //  field_bottom = [[[[[[[Data valueForKey:@"pages"]valueForKey:@"fields"]valueForKey:@"screenPos"]objectAtIndex:0]valueForKey:@"bottom"] objectAtIndex:k]floatValue];
+            field_left = [[[[[[[Data valueForKey:@"pages"]valueForKey:@"fields"]valueForKey:@"screenPos"]objectAtIndex:i]valueForKey:@"left"] objectAtIndex:k]floatValue];
+            field_width = [[[[[[[Data valueForKey:@"pages"]valueForKey:@"fields"]valueForKey:@"screenPos"]objectAtIndex:i]valueForKey:@"width"] objectAtIndex:k]floatValue];
+            field_height =[[[[[[[Data valueForKey:@"pages"]valueForKey:@"fields"]valueForKey:@"screenPos"]objectAtIndex:i]valueForKey:@"height"] objectAtIndex:k]floatValue];
             
             
             UiElement_width = field_width * width_ratio;
@@ -207,8 +209,8 @@
             ArrowimageView = [[UIImageView alloc]initWithFrame:CGRectMake(field_left * width_ratio,((field_top * height_ratio)- UiElement_height)+ i*400,UiElement_width,UiElement_height)];
             ArrowimageView.image = ArrowImg;
             
-           // NSLog(@"The arrow left margin is: %f",field_left * width_ratio);
-          //  NSLog(@"The arrow top margin is: %f",field_top * height_ratio);
+            NSLog(@"The arrow left margin is: %f",field_left * width_ratio);
+            NSLog(@"The arrow top margin is: %f",field_top * height_ratio);
             
             UILabel *textLabel = [[UILabel alloc]initWithFrame:CGRectMake(field_left * width_ratio,(k*50)+100 +i*400 + UiElement_height,100,UiElement_height)];
             textLabel.text = @"hello";
@@ -269,12 +271,11 @@
 + (docShow *)sharedInstance {
     // Singleton implementation
     static docShow* instance;
-    instance = [[docShow alloc] init];
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         instance = [[docShow alloc] init];
     });
-    
+    [[docShow sharedInstance]textChangingTime];
     return instance;
 }
 
@@ -284,7 +285,7 @@
     [self.start_vidturing setTitle:[customPopUp returnpopUpString] forState:UIControlStateNormal];
     [self.start_vidturing setBackgroundColor:[UIColor orangeColor]];
     self.testing_label.text = myString;
-    
+    [self.view setBackgroundColor:[UIColor blackColor]];
     [self.testing_label setTextColor:[UIColor blackColor]];
     NSLog(@"the string in method is %@",myString);
     [self kardeChange];
