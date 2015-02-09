@@ -49,7 +49,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "AVCamPreviewView.h"
-
+#import "docShow.h"
 
 static void * RecordingContext = &RecordingContext;
 static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDeviceAuthorizedContext;
@@ -93,6 +93,9 @@ double timeToStop;
 {
 	[super viewDidLoad];
     
+    NSString *documentToRead = [[[docShow returnDataArray] valueForKey:@"me"]valueForKey:@"readOutMessage"];
+    
+    self.toReadText.text = documentToRead;
 	// Create the AVCaptureSession
 	AVCaptureSession *session = [[AVCaptureSession alloc] init];
 	[self setSession:session];

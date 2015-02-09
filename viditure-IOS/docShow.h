@@ -11,7 +11,7 @@
 #import "customPopUp.h"
 #import "secondPopUp.h"
 
-@interface docShow : UIViewController<UIScrollViewDelegate , UITextFieldDelegate>
+@interface docShow : UIViewController<UIScrollViewDelegate , UITextFieldDelegate,UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *start_vidturing;
 - (IBAction)vidture_action:(id)sender;
@@ -22,4 +22,6 @@
 + (docShow *)sharedInstance;
 -(void)kardeChange;
 +(void)setText;
+
++(NSMutableArray *)returnDataArray;
 @end

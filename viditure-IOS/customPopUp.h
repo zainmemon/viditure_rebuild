@@ -11,11 +11,12 @@
 #import "AppDelegate.h"
 
 @interface customPopUp : UIViewController
-- (void)showInView:(UIView *)aView animated:(BOOL)animated;
+- (void)showInView:(UIView *)aView animated:(BOOL)animated popUpString:(NSString *)popUpString;
 
 - (IBAction)okay_button:(id)sender;
 - (IBAction)cancel_button:(id)sender;
 
 +(NSString *)returnpopUpString;
+@property (weak, nonatomic) IBOutlet UILabel *text_label;
 
 @end

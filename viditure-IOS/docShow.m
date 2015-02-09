@@ -22,7 +22,8 @@
     customPopUp *custom;
     NSString *myString;
     NSMutableDictionary *completeData;
-    NSMutableArray *Data;
+    
+    NSMutableArray *FieldType;
     float screenWidth;
     float screenHeight;
     float page_width;
@@ -37,6 +38,11 @@
     float field_left;
     float field_width;
     float field_height;
+    int fields_count;
+    bool video_time;
+    bool signature_time;
+    bool text_time;
+   // UILabel *textLabel;
 }
 @end
 
@@ -44,6 +50,7 @@
 {
     NSString * docImage;
 }
+static NSMutableArray *Data;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -62,8 +69,16 @@
     screenWidth = screenRect.size.width;
     screenHeight = screenRect.size.height;
     
+    //initializations//
     
-    // Do any additional setup after loading the view.
+    FieldType = [[NSMutableArray alloc]init];
+    fields_count = 0;
+    text_time = true;
+    video_time = true;
+    signature_time = true;
+    
+    //initializations end here//
+    
     [self LoadPages];
     [self.view addSubview:self.scroll];
     signature.delegate = self;
@@ -107,19 +122,16 @@
 
 -(void) LoadPages
 {
-    //    CGRect rect=CGRectMake(0,110,400,250);
-    //    [self.scroll setFrame:rect];
-    
     
     WebService *web = [[WebService alloc]init];
-    completeData = [web FilePath:@"http://test.viditure.com/vts/signrequest/54bd03b8e4b02e50bf3d3a94"parameterOne:nil];
+    completeData = [web FilePath:@"http://dev.viditure.com/vts/signrequest/54d44561e4b078093442f58d"parameterOne:nil];
     Data = [completeData valueForKey:@"dataArray"];
     NSString *authTokenValue = [[completeData valueForKey:@"Headers"]valueForKey:@"X-Auth-Token"];
     unsigned long pages_length = [[Data valueForKey:@"pages"]count];
     unsigned long fields_length;
     tempView = [[UIView alloc]initWithFrame:CGRectMake(0,0,320,pages_length * 400)];
     
-    for(int i =0;i<2;i++){
+    for(int i =0;i<pages_length;i++){
           //  NSLog(@"the _id is: %@",[[[Data valueForKey:@"pages"]valueForKey:@"pageImage_url"] objectAtIndex:i]);
     
         fields_length = [[[[Data valueForKey:@"pages"]objectAtIndex:i] valueForKey:@"fields"] count];
@@ -188,6 +200,9 @@
         for(int k=0; k <fields_length; k ++){
             
             NSLog(@"times in loop %d",k);
+            fields_count += 1;
+            
+            [FieldType addObject:[[[[[[Data valueForKey:@"pages"]valueForKey:@"fields"]objectAtIndex:i]valueForKey:@"kind"]valueForKey:@"type"]objectAtIndex:k]];
             
             field_top = [[[[[[[Data valueForKey:@"pages"]valueForKey:@"fields"]valueForKey:@"screenPos"]objectAtIndex:i]valueForKey:@"top"] objectAtIndex:k]floatValue];
           //  field_bottom = [[[[[[[Data valueForKey:@"pages"]valueForKey:@"fields"]valueForKey:@"screenPos"]objectAtIndex:0]valueForKey:@"bottom"] objectAtIndex:k]floatValue];
@@ -206,23 +221,20 @@
             
             //field_left * width_ratio,field_top * height_ratio
             
-            ArrowimageView = [[UIImageView alloc]initWithFrame:CGRectMake(field_left * width_ratio,((field_top * height_ratio)- UiElement_height)+ i*400,UiElement_width,UiElement_height)];
+            ArrowimageView = [[UIImageView alloc]initWithFrame:CGRectMake(field_left * width_ratio,(((field_top * height_ratio)- UiElement_height)+ i*400)-200,UiElement_width,UiElement_height)];
             ArrowimageView.image = ArrowImg;
+            
+            UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc]
+                                                     initWithTarget:self action:@selector(DynamicLabelTap:)];
+            [tapRecognizer setNumberOfTouchesRequired:1];
+            [tapRecognizer setDelegate:self];
+            ArrowimageView.userInteractionEnabled = YES;
+            ArrowimageView.tag = fields_count;
+            [ArrowimageView addGestureRecognizer:tapRecognizer];
             
             NSLog(@"The arrow left margin is: %f",field_left * width_ratio);
             NSLog(@"The arrow top margin is: %f",field_top * height_ratio);
             
-            UILabel *textLabel = [[UILabel alloc]initWithFrame:CGRectMake(field_left * width_ratio,(k*50)+100 +i*400 + UiElement_height,100,UiElement_height)];
-            textLabel.text = @"hello";
-            textLabel.textColor = [UIColor blackColor];
-            textLabel.tag = i+k;
-            textLabel.userInteractionEnabled = YES;
-            UITapGestureRecognizer *tapGesture =
-            [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(DynamicLabelTap)];
-            [textLabel addGestureRecognizer:tapGesture];
-
-            
-            [tempView addSubview:textLabel];
             [tempView addSubview:ArrowimageView];
 
 //            dispatch_queue_t myqueue = dispatch_queue_create("myqueue", NULL);
@@ -265,7 +277,7 @@
 -(void)labelTap
 {
     custom = [[customPopUp alloc] initWithNibName:@"customPopUp" bundle:nil];
-    [custom showInView:self.view animated:YES];
+   // [custom showInView:self.view animated:YES];
     
 }
 + (docShow *)sharedInstance {
@@ -292,7 +304,7 @@
 }
 
 -(void)kardeChange{
-    NSLog(@"hello");
+   // NSLog(@"hello");
     myString = [customPopUp returnpopUpString];
     [self.start_vidturing setTitle:[customPopUp returnpopUpString] forState:UIControlStateNormal];
     [self.start_vidturing setBackgroundColor:[UIColor orangeColor]];
@@ -303,20 +315,70 @@
 
 +(void)setText{
     
-    //docShow.self.testing_label.text = [customPopUp returnpopUpString];
     NSLog(@"the testing string is %@",[customPopUp returnpopUpString]);
     
     [docShow sharedInstance];
     [[docShow sharedInstance]textChangingTime];
     
 }
--(void)DynamicLabelTap
+-(void)DynamicLabelTap: (id)sender
 {
-    custom = [[customPopUp alloc] initWithNibName:@"customPopUp" bundle:nil];
-    [custom showInView:self.view animated:YES];
+    
+    UITapGestureRecognizer *tapRecognizer = (UITapGestureRecognizer *)sender;
+
+    if([[FieldType objectAtIndex:[tapRecognizer.view tag]-1] isEqualToString:@"TEXT"])
+    {
+        if (text_time) {
+            
+        }
+        else{
+            custom = [[customPopUp alloc] initWithNibName:@"customPopUp" bundle:nil];
+            [custom showInView:self.view animated:YES popUpString:@"Do you want to continue with the initials you have provided?"];
+        }
+    }
+    else if ([[FieldType objectAtIndex:[tapRecognizer.view tag]-1]  isEqualToString:@"VIDEO"])
+    {
+        if (video_time)
+        {
+            video_time = false;
+            [self performSegueWithIdentifier:@"camera_time" sender:self];
+        }
+        else{
+            custom = [[customPopUp alloc] initWithNibName:@"customPopUp" bundle:nil];
+            [custom showInView:self.view animated:YES popUpString:@"Do you want to continue with the Video you have provided?"];
+        }
+    }
+    else if ([[FieldType objectAtIndex:[tapRecognizer.view tag]-1]  isEqualToString:@"IMAGE"])
+    {
+        if (signature_time)
+        {
+            signature_time = false;
+            secondPopup = [[secondPopUp alloc] initWithNibName:@"Second" bundle:nil];
+            [secondPopup showInView:self.view animated:YES];
+        }
+        else{
+            custom = [[customPopUp alloc] initWithNibName:@"customPopUp" bundle:nil];
+            [custom showInView:self.view animated:YES popUpString:@"Do you want to continue with the Signature you have provided?"];
+        }
+    }
+    else
+    {
+        custom = [[customPopUp alloc] initWithNibName:@"customPopUp" bundle:nil];
+        [custom showInView:self.view animated:YES popUpString:@"hello"];
+    }
+    
     
 }
 
+- (IBAction)unwindToVC1:(UIStoryboardSegue*)sender
+{
+    
+}
+
++(NSMutableArray *)returnDataArray
+{
+    return Data;
+}
 
 
 @end

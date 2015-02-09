@@ -89,10 +89,7 @@
     UIGraphicsEndImageContext();
     UIImageWriteToSavedPhotosAlbum(copied, nil, nil, nil);
     
-    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"lastScreen"];
-    vc.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-    [self.view.window.rootViewController presentViewController:vc animated:YES completion:nil];
+    [self removeAnimate];
     
 }
 

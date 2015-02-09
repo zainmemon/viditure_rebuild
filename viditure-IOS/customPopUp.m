@@ -46,7 +46,7 @@ static NSString *popupString;
 
 - (void)removeAnimate
 {
-    [docShow sharedInstance];
+    //[docShow sharedInstance];
     d = [[docShow alloc]init];
     [d kardeChange];
     
@@ -69,11 +69,13 @@ static NSString *popupString;
     }
 }
 
-- (void)showInView:(UIView *)aView animated:(BOOL)animated
+- (void)showInView:(UIView *)aView animated:(BOOL)animated popUpString:(NSString *)popUpString
 {
     dispatch_async(dispatch_get_main_queue(), ^{
+        
         [aView addSubview:self.view];
         if (animated) {
+            self.text_label.text = popUpString;
             [self showAnimate];
         }
     });

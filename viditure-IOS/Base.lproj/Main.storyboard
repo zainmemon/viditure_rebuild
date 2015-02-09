@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="12E4022" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Wf4-lZ-Rb7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="12E4022" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="XrG-Lc-rp8">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -142,7 +142,7 @@
             </objects>
             <point key="canvasLocation" x="1622" y="142"/>
         </scene>
-        <!--Doc Show - Floor-->
+        <!--Doc Show - Document-->
         <scene sceneID="cDB-ZQ-rvP">
             <objects>
                 <viewController storyboardIdentifier="document" id="Wf4-lZ-Rb7" customClass="docShow" sceneMemberID="viewController">
@@ -181,13 +181,6 @@
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="beq-Yb-ui5">
-                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem title="Document" id="nyW-md-2My"/>
-                                </items>
-                            </navigationBar>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A3v-TS-Sbx">
                                 <rect key="frame" x="0.0" y="126" width="320" height="286"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -205,20 +198,21 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Floor" id="f0r-wb-PUu">
+                    <navigationItem key="navigationItem" title="Document" id="f0r-wb-PUu">
                         <barButtonItem key="backBarButtonItem" title="Back" id="opY-ec-HfU"/>
                     </navigationItem>
                     <connections>
                         <outlet property="scroll" destination="A3v-TS-Sbx" id="xzJ-Xf-c98"/>
                         <outlet property="start_vidturing" destination="tdj-Bk-chn" id="UrI-1k-vzo"/>
                         <outlet property="testing_label" destination="jH5-Wr-1aS" id="Zin-KI-z2C"/>
+                        <segue destination="FSW-Yh-ee7" kind="push" identifier="camera_time" id="0tw-bW-myu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DZk-N7-WSC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3105" y="148"/>
+            <point key="canvasLocation" x="3631" y="148"/>
         </scene>
-        <!--Test Camera-->
+        <!--Test Camera - Test Camera-->
         <scene sceneID="OUj-2p-OvM">
             <objects>
                 <viewController storyboardIdentifier="camera_time" id="FSW-Yh-ee7" customClass="TestCamera" sceneMemberID="viewController">
@@ -237,19 +231,6 @@
                                 <color key="textColor" red="0.29411764709999999" green="0.63529411759999999" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5f8-EJ-8ja">
-                                <rect key="frame" x="0.0" y="18" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem title="Test Camera" id="5mY-V1-PyL">
-                                        <barButtonItem key="leftBarButtonItem" title="Back" id="Eax-6F-0np">
-                                            <connections>
-                                                <action selector="backTime:" destination="FSW-Yh-ee7" id="9DX-XP-4LJ"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Camera works" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bb1-wc-lhA">
                                 <rect key="frame" x="20" y="348" width="280" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -266,7 +247,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="TlO-XV-6PD" kind="modal" id="RLy-tR-oNV"/>
+                                    <segue destination="e8D-9L-rb8" kind="push" id="tlI-Pi-F58"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ia1-2f-f4a" customClass="AVCamPreviewView">
@@ -290,15 +271,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="kjv-Zf-Yn3"/>
+                    <navigationItem key="navigationItem" title="Test Camera" id="kjv-Zf-Yn3">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="bAL-oy-tRG"/>
+                    </navigationItem>
                     <connections>
-                        <outlet property="back" destination="Eax-6F-0np" id="gF0-aJ-vCA"/>
                         <outlet property="previewView" destination="Ia1-2f-f4a" id="lXL-9i-ulF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="shN-vI-Uw7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3663" y="148"/>
+            <point key="canvasLocation" x="4091" y="148"/>
         </scene>
         <!--Last Screen - Title-->
         <scene sceneID="EiI-s0-Y7X">
@@ -392,32 +374,28 @@
                                 <color key="textColor" red="0.29411764709999999" green="0.63529411759999999" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="I Joe Signer agree to Document Number GPU32" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="KG3-58-rIA">
-                                <rect key="frame" x="21" y="379" width="280" height="60"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="ydn-dF-xJf">
+                                <rect key="frame" x="20" y="382" width="280" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Record Video" id="VzD-i1-F7k">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="HaN-5g-9jz"/>
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="Gqt-mt-ZBB">
-                            <connections>
-                                <action selector="Back:" destination="e8D-9L-rb8" id="ifX-PX-8q2"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="backBarButtonItem" title="Back" id="UKz-8A-qC4"/>
                     </navigationItem>
                     <connections>
                         <outlet property="previewView" destination="Ve8-Po-rw5" id="ErA-9N-9zR"/>
                         <outlet property="recordButton" destination="hTF-Vx-vhZ" id="ofk-w9-NU3"/>
+                        <outlet property="toReadText" destination="ydn-dF-xJf" id="Kt2-gw-PbV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cqH-b4-yKA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4702" y="148"/>
+            <point key="canvasLocation" x="4523" y="148"/>
         </scene>
         <!--Video Playing - Play-->
         <scene sceneID="KcZ-Xn-lfv">
@@ -431,7 +409,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Step 2: Read the following sentence while recording" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="ZCj-DT-Mng">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Step 2: Check the Video. If you want to re-record, go Back." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="ZCj-DT-Mng">
                                 <rect key="frame" x="20" y="71" width="280" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -446,22 +424,19 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="PzF-2Y-P42" kind="unwind" unwindAction="unwindToVC1:" id="ZGA-tM-bUC"/>
+                                </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="I Joe Signer agree to Document Number GPU32" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="bq4-VD-gvM">
-                                <rect key="frame" x="21" y="379" width="280" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Play" id="Hd3-ih-0qH"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ubx-kk-QQU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="PzF-2Y-P42" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="5180" y="148"/>
+            <point key="canvasLocation" x="4957" y="148"/>
         </scene>
         <!--Video Testing-->
         <scene sceneID="oWm-Hv-N7x">
@@ -493,26 +468,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gwO-hn-PNW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6277" y="178"/>
+            <point key="canvasLocation" x="6803" y="178"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="mHd-d4-51m">
+        <scene sceneID="xIh-Bq-Sx8">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TlO-XV-6PD" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="XrG-Lc-rp8" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="1bB-4o-kg2"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="VEU-jV-2gI">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="sU0-fQ-kKj">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="e8D-9L-rb8" kind="relationship" relationship="rootViewController" id="8xT-2r-pBT"/>
+                        <segue destination="Wf4-lZ-Rb7" kind="relationship" relationship="rootViewController" id="Zjo-TJ-apQ"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="IRJ-Iu-Jdm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pia-Gl-tVE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4182" y="148"/>
+            <point key="canvasLocation" x="3105" y="148"/>
         </scene>
     </scenes>
     <resources>
