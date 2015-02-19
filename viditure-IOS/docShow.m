@@ -124,7 +124,7 @@ static NSMutableArray *Data;
 {
     
     WebService *web = [[WebService alloc]init];
-    completeData = [web FilePath:@"http://dev.viditure.com/vts/signrequest/54d44561e4b078093442f58d"parameterOne:nil];
+    completeData = [web FilePath:@"http://dev.viditure.com/vts/signrequest/54e433ece4b0bfbc3b3d8988"parameterOne:nil];
     Data = [completeData valueForKey:@"dataArray"];
     NSString *authTokenValue = [[completeData valueForKey:@"Headers"]valueForKey:@"X-Auth-Token"];
     unsigned long pages_length = [[Data valueForKey:@"pages"]count];
@@ -214,7 +214,7 @@ static NSMutableArray *Data;
             UiElement_width = field_width * width_ratio;
             UiElement_height = field_height * height_ratio;
             
-            docImage  = @"http://dev.viditure.com/UIFW/images/date-arrow.png";
+            docImage  = [[[[[[Data valueForKey:@"pages"]valueForKey:@"fields"]objectAtIndex:i]valueForKey:@"kind"]valueForKey:@"fieldImage_url"]objectAtIndex:k];
             NSURL *VendorImageUrl = [NSURL URLWithString:docImage];
             NSData *data = [[NSData alloc]initWithContentsOfURL:VendorImageUrl];
             UIImage *ArrowImg = [[UIImage alloc]initWithData:data];
