@@ -6,7 +6,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="secondPopUp">
             <connections>
-                <outlet property="Date" destination="Dvx-O6-m0W" id="hGY-0p-1Cy"/>
                 <outlet property="canvasView" destination="02c-LJ-CsR" id="X58-tF-DZe"/>
                 <outlet property="drawingPad" destination="xPn-fp-5nR" id="pkp-5g-WIy"/>
                 <outlet property="popUpView" destination="Pon-Sf-YGC" id="fze-rS-Htu"/>
@@ -23,7 +22,7 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kfh-dS-Rs4">
-                            <rect key="frame" x="4" y="3" width="57" height="30"/>
+                            <rect key="frame" x="4" y="8" width="57" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" title="Back">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -33,7 +32,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J6X-WR-rfq">
-                            <rect key="frame" x="216" y="3" width="37" height="30"/>
+                            <rect key="frame" x="216" y="8" width="37" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" title="Clear">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -45,21 +44,15 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                 </view>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="DATE" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dvx-O6-m0W">
-                    <rect key="frame" x="45" y="299" width="230" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                </textField>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="esignature" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bgL-Iv-lAl">
-                    <rect key="frame" x="120" y="150" width="80" height="21"/>
+                    <rect key="frame" x="120" y="158" width="80" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pGj-Kx-tIE">
-                    <rect key="frame" x="80" y="342" width="160" height="30"/>
+                    <rect key="frame" x="80" y="337" width="160" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.29411764709999999" green="0.63529411759999999" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="Use this Signature">
@@ -71,11 +64,11 @@
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="02c-LJ-CsR">
-                    <rect key="frame" x="37" y="185" width="245" height="90"/>
+                    <rect key="frame" x="37" y="199" width="245" height="110"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
                         <view contentMode="center" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xPn-fp-5nR" customClass="Canvas">
-                            <rect key="frame" x="0.0" y="0.0" width="245" height="90"/>
+                            <rect key="frame" x="0.0" y="0.0" width="245" height="110"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>

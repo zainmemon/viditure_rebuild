@@ -135,26 +135,7 @@ static NSMutableArray *Data;
           //  NSLog(@"the _id is: %@",[[[Data valueForKey:@"pages"]valueForKey:@"pageImage_url"] objectAtIndex:i]);
     
         fields_length = [[[[Data valueForKey:@"pages"]objectAtIndex:i] valueForKey:@"fields"] count];
-        NSLog(@"the feilds length is: %lu",fields_length);
-        
-        
-       // NSLog(@"The UiElement width is: %f",UiElement_width);
-       // NSLog(@"The UiElement height is: %f",UiElement_height);
-        
-  //  NSLog(@"the bottom is: %@",page_bottom);
-  //  NSLog(@"the width is: %@",page_width);
-  //  NSLog(@"the height is: %@",page_height);
-        
-        
-        //    CGRect rect=CGRectMake(0,110,400,250);
-        //    [self.scroll setFrame:rect];
-        
-        
-    
-   // NSData *ArrowimageData = [web returnImageData:[[[[[Data valueForKey:@"pages"]valueForKey:@"fields"]valueForKey:@"kind"]valueForKey:@"fieldImage_url"] objectAtIndex:0] AuthTokenValue:nil];
-    
 
-    //NSLog(@"the image is: %@",img);
     
     signature = [[UITextField alloc]initWithFrame:CGRectMake(80,100,150,30)];
     [signature setBorderStyle:UITextBorderStyleRoundedRect];
@@ -165,7 +146,7 @@ static NSMutableArray *Data;
         
         NSData *imageData = [web returnImageData:[[[Data valueForKey:@"pages"]valueForKey:@"pageImage_url"] objectAtIndex:i] AuthTokenValue:authTokenValue];
         UIImage *img = [[UIImage alloc]initWithData:imageData];
-        pagesImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0,i*400, 300, 400)];
+        pagesImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0,i*400, 320, 400)];
         
         pagesImageView.image = img;
         [tempView addSubview:pagesImageView];
@@ -191,10 +172,11 @@ static NSMutableArray *Data;
         page_height = [[[[[Data valueForKey:@"pages"]valueForKey:@"pagePosition"]valueForKey:@"height" ] objectAtIndex:i]floatValue];
        // page_bottom = [[[[[Data valueForKey:@"pages"]valueForKey:@"pagePosition"]valueForKey:@"bottom" ] objectAtIndex:i]floatValue];
         
-        width_ratio = screenWidth / page_width;
-        height_ratio = screenHeight / page_height;
+        width_ratio = 320 / page_width;
+        height_ratio = 400 / page_height;
         
-        //NSLog(@"The heigth ratio is: %f",height_ratio);
+        NSLog(@"The page width is: %f",page_width);
+        NSLog(@"The width ratio is: %f",width_ratio);
         
     if(fields_length>0){
         for(int k=0; k <fields_length; k ++){
@@ -204,13 +186,12 @@ static NSMutableArray *Data;
             
             [FieldType addObject:[[[[[[Data valueForKey:@"pages"]valueForKey:@"fields"]objectAtIndex:i]valueForKey:@"kind"]valueForKey:@"type"]objectAtIndex:k]];
             
-            field_top = [[[[[[[Data valueForKey:@"pages"]valueForKey:@"fields"]valueForKey:@"screenPos"]objectAtIndex:i]valueForKey:@"top"] objectAtIndex:k]floatValue];
+            field_top = [[[[[[[Data valueForKey:@"pages"]valueForKey:@"fields"]valueForKey:@"screenPos"]objectAtIndex:0]valueForKey:@"top"] objectAtIndex:k]floatValue];
           //  field_bottom = [[[[[[[Data valueForKey:@"pages"]valueForKey:@"fields"]valueForKey:@"screenPos"]objectAtIndex:0]valueForKey:@"bottom"] objectAtIndex:k]floatValue];
             field_left = [[[[[[[Data valueForKey:@"pages"]valueForKey:@"fields"]valueForKey:@"screenPos"]objectAtIndex:i]valueForKey:@"left"] objectAtIndex:k]floatValue];
             field_width = [[[[[[[Data valueForKey:@"pages"]valueForKey:@"fields"]valueForKey:@"screenPos"]objectAtIndex:i]valueForKey:@"width"] objectAtIndex:k]floatValue];
             field_height =[[[[[[[Data valueForKey:@"pages"]valueForKey:@"fields"]valueForKey:@"screenPos"]objectAtIndex:i]valueForKey:@"height"] objectAtIndex:k]floatValue];
-            
-            
+
             UiElement_width = field_width * width_ratio;
             UiElement_height = field_height * height_ratio;
             
@@ -221,7 +202,17 @@ static NSMutableArray *Data;
             
             //field_left * width_ratio,field_top * height_ratio
             
-            ArrowimageView = [[UIImageView alloc]initWithFrame:CGRectMake(field_left * width_ratio,(((field_top * height_ratio)- UiElement_height)+ i*400)-200,UiElement_width,UiElement_height)];
+            ArrowimageView = [[UIImageView alloc]initWithFrame:CGRectMake((field_left *width_ratio) ,((field_top * height_ratio)-(field_height *height_ratio)+ i*400),UiElement_width,UiElement_height)];
+            
+            //NSLog(@"the field top is %f",field_top);
+            NSLog(@"the calculated width is %f",(field_width * width_ratio) + (field_left *width_ratio));
+            NSLog(@"the first is %f",(field_left *width_ratio));
+            NSLog(@"the second is %f",(field_width * width_ratio) );
+//            NSLog(@"the calculated value is %f",((field_top * height_ratio)-(field_height *height_ratio)+ i*400));
+//            NSLog(@"the expected calculated value is %f",(((field_top * height_ratio)- UiElement_height)+ i*400)-140);
+//            NSLog(@"the field height is %f",field_height);
+//            NSLog(@"the element height is %f",UiElement_height);
+            
             ArrowimageView.image = ArrowImg;
             
             UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc]
@@ -232,8 +223,8 @@ static NSMutableArray *Data;
             ArrowimageView.tag = fields_count;
             [ArrowimageView addGestureRecognizer:tapRecognizer];
             
-            NSLog(@"The arrow left margin is: %f",field_left * width_ratio);
-            NSLog(@"The arrow top margin is: %f",field_top * height_ratio);
+            //NSLog(@"The arrow left margin is: %f",field_left * width_ratio);
+            //NSLog(@"The arrow top margin is: %f",field_top * height_ratio);
             
             [tempView addSubview:ArrowimageView];
 
