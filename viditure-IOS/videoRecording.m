@@ -435,8 +435,7 @@ double timeToStop;
 }
 
 -(void)whenToStopVideo{
-    
-    timeToStop = 8.0f;
+    timeToStop = [[[[docShow returnDataArray] valueForKey:@"me"]valueForKey:@"videoDuration"]doubleValue];
     
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, timeToStop * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
