@@ -75,12 +75,6 @@
 
 - (IBAction)callThirdPopUp:(id)sender {
     
-//    UIGraphicsBeginImageContext(self.canvasView.frame.size);
-//	[self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
-//	UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
-//	UIGraphicsEndImageContext();
-//	UIImageWriteToSavedPhotosAlbum(viewImage, nil, nil, nil);
-    
     UIGraphicsBeginImageContextWithOptions(self.canvasView.bounds.size, NO, 0);
     
     [self.canvasView drawViewHierarchyInRect:self.canvasView.bounds afterScreenUpdates:YES];
@@ -88,7 +82,7 @@
     UIImage *copied = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     UIImageWriteToSavedPhotosAlbum(copied, nil, nil, nil);
-    
+    [[NSUserDefaults standardUserDefaults] setObject:@"signature_done" forKey:@"signature"];
     [self removeAnimate];
     
 }

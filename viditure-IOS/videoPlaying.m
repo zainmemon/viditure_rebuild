@@ -50,4 +50,8 @@
     [moviePlayerController.view removeFromSuperview];
 }
 
+- (IBAction)video_viditured:(id)sender {
+    
+    [[NSUserDefaults standardUserDefaults] setObject:@"video_done" forKey:@"video"];
+}
 @end

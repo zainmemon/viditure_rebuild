@@ -42,7 +42,7 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="callThirdPopUp:" destination="-1" eventType="touchUpInside" id="ahs-do-YZU"/>
+                                <action selector="OkayPressed:" destination="-1" eventType="touchUpInside" id="zCr-j9-BkK"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vx1-a9-43p">

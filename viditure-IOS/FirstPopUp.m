@@ -17,6 +17,8 @@
 
 @implementation FirstPopUp
 
+static NSString *requiredString;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -29,6 +31,8 @@
 
 - (void)viewDidLoad
 {
+    requiredString = @"No value";
+    
     self.view.backgroundColor=[[UIColor blackColor] colorWithAlphaComponent:.6];
     self.popUpView.layer.cornerRadius = 5;
     self.popUpView.layer.shadowOpacity = 0.8;
@@ -56,6 +60,10 @@
     self.initials.layer.borderWidth= 1.0f;
     self.initials.delegate = self;
     
+    
+    self.name.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"name"];
+    self.DATE.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"date"];
+    self.initials.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"initials"];
     originalCenter = self.popUpView.center;
     [super viewDidLoad];
   
@@ -74,8 +82,10 @@
     [UIView animateWithDuration:.25 animations:^{
         self.view.transform = CGAffineTransformMakeScale(1.3, 1.3);
         self.view.alpha = 0.0;
+        requiredString = @"some value";
     } completion:^(BOOL finished) {
         if (finished) {
+            requiredString = @"full value";
             [self.view removeFromSuperview];
         }
         
@@ -101,7 +111,11 @@
     });
 }
 
-- (IBAction)callThirdPopUp:(id)sender {
+- (IBAction)OkayPressed:(id)sender {
+
+    [[NSUserDefaults standardUserDefaults] setObject:self.name.text forKey:@"name"];
+    [[NSUserDefaults standardUserDefaults] setObject:self.DATE.text forKey:@"date"];
+    [[NSUserDefaults standardUserDefaults] setObject:self.initials.text forKey:@"initials"];
 
     [self removeAnimate];
 }
@@ -119,6 +133,10 @@
 -(BOOL) textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
     return YES;
+}
+
++(NSString *)returnRequiredString{
+    return requiredString;
 }
 
 @end

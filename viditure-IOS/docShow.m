@@ -10,10 +10,11 @@
 #import <QuartzCore/QuartzCore.h>
 #import "customPopUp.h"
 #import "WebService.h"
+#import "FirstPopUp.h"
 
 @interface docShow ()
 {
-    FirstPopUp *firstPopUp;
+    FirstPopUp *firstPop;
     secondPopUp *secondPopup;
     UIImageView *pagesImageView;
     UIImageView *ArrowimageView;
@@ -42,7 +43,6 @@
     bool video_time;
     bool signature_time;
     bool text_time;
-   // UILabel *textLabel;
 }
 @end
 
@@ -103,20 +103,16 @@ static NSMutableArray *Data;
 
 - (IBAction)vidture_action:(id)sender {
 
-    //firstPopUp = [[FirstPopUp alloc] initWithNibName:@"FirstPopUp" bundle:nil];
-    //[firstPopUp showInView:self.view animated:YES];
-    
-    secondPopup = [[secondPopUp alloc] initWithNibName:@"Second" bundle:nil];
-    [secondPopup showInView:self.view animated:YES];
-
-    
-    //custom = [[customPopUp alloc] initWithNibName:@"customPopUp" bundle:nil];
-    //[custom showInView:self.view animated:YES];
-    
-    //NSLog(@"the testing string is %@",[customPopUp returnpopUpString]);
-    
-    self.testing_label.text = [customPopUp returnpopUpString];
-    
+    if([[[NSUserDefaults standardUserDefaults] stringForKey:@"name"]isEqualToString:@""] || [[[NSUserDefaults standardUserDefaults] stringForKey:@"date"]isEqualToString:@""] || [[[NSUserDefaults standardUserDefaults] stringForKey:@"initials"]isEqualToString:@""])
+    {
+        firstPop = [[FirstPopUp alloc] initWithNibName:@"FirstPopUp" bundle:nil];
+        [firstPop showInView:self.view animated:YES];
+    }
+    else
+    {
+        custom = [[customPopUp alloc] initWithNibName:@"customPopUp" bundle:nil];
+        [custom showInView:self.view animated:YES popUpString:@"Do you want to continue with the Name, Date and Initials you have provided?"];
+    }
     
 }
 
@@ -175,13 +171,10 @@ static NSMutableArray *Data;
         width_ratio = 320 / page_width;
         height_ratio = 400 / page_height;
         
-        NSLog(@"The page width is: %f",page_width);
-        NSLog(@"The width ratio is: %f",width_ratio);
         
     if(fields_length>0){
         for(int k=0; k <fields_length; k ++){
             
-            NSLog(@"times in loop %d",k);
             fields_count += 1;
             
             [FieldType addObject:[[[[[[Data valueForKey:@"pages"]valueForKey:@"fields"]objectAtIndex:i]valueForKey:@"kind"]valueForKey:@"type"]objectAtIndex:k]];
@@ -203,16 +196,7 @@ static NSMutableArray *Data;
             //field_left * width_ratio,field_top * height_ratio
             
             ArrowimageView = [[UIImageView alloc]initWithFrame:CGRectMake((field_left *width_ratio) ,((field_top * height_ratio)-(field_height *height_ratio)+ i*400),UiElement_width,UiElement_height)];
-            
-            //NSLog(@"the field top is %f",field_top);
-            NSLog(@"the calculated width is %f",(field_width * width_ratio) + (field_left *width_ratio));
-            NSLog(@"the first is %f",(field_left *width_ratio));
-            NSLog(@"the second is %f",(field_width * width_ratio) );
-//            NSLog(@"the calculated value is %f",((field_top * height_ratio)-(field_height *height_ratio)+ i*400));
-//            NSLog(@"the expected calculated value is %f",(((field_top * height_ratio)- UiElement_height)+ i*400)-140);
-//            NSLog(@"the field height is %f",field_height);
-//            NSLog(@"the element height is %f",UiElement_height);
-            
+
             ArrowimageView.image = ArrowImg;
             
             UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc]
@@ -222,9 +206,6 @@ static NSMutableArray *Data;
             ArrowimageView.userInteractionEnabled = YES;
             ArrowimageView.tag = fields_count;
             [ArrowimageView addGestureRecognizer:tapRecognizer];
-            
-            //NSLog(@"The arrow left margin is: %f",field_left * width_ratio);
-            //NSLog(@"The arrow top margin is: %f",field_top * height_ratio);
             
             [tempView addSubview:ArrowimageView];
 
@@ -271,67 +252,28 @@ static NSMutableArray *Data;
    // [custom showInView:self.view animated:YES];
     
 }
-+ (docShow *)sharedInstance {
-    // Singleton implementation
-    static docShow* instance;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        instance = [[docShow alloc] init];
-    });
-    [[docShow sharedInstance]textChangingTime];
-    return instance;
-}
 
--(void)textChangingTime{
-    NSLog(@"hi");
-    myString = [customPopUp returnpopUpString];
-    [self.start_vidturing setTitle:[customPopUp returnpopUpString] forState:UIControlStateNormal];
-    [self.start_vidturing setBackgroundColor:[UIColor orangeColor]];
-    self.testing_label.text = myString;
-    [self.view setBackgroundColor:[UIColor blackColor]];
-    [self.testing_label setTextColor:[UIColor blackColor]];
-    NSLog(@"the string in method is %@",myString);
-    [self kardeChange];
-}
-
--(void)kardeChange{
-   // NSLog(@"hello");
-    myString = [customPopUp returnpopUpString];
-    [self.start_vidturing setTitle:[customPopUp returnpopUpString] forState:UIControlStateNormal];
-    [self.start_vidturing setBackgroundColor:[UIColor orangeColor]];
-    self.testing_label.text = myString;
-    
-    [self.testing_label setTextColor:[UIColor blackColor]];
-}
-
-+(void)setText{
-    
-    NSLog(@"the testing string is %@",[customPopUp returnpopUpString]);
-    
-    [docShow sharedInstance];
-    [[docShow sharedInstance]textChangingTime];
-    
-}
 -(void)DynamicLabelTap: (id)sender
 {
-    
+    NSString *returnedString = [FirstPopUp returnRequiredString];
+    NSLog(@"the returned string is %@",returnedString);
     UITapGestureRecognizer *tapRecognizer = (UITapGestureRecognizer *)sender;
 
     if([[FieldType objectAtIndex:[tapRecognizer.view tag]-1] isEqualToString:@"TEXT"])
     {
-        if (text_time) {
+        if (text_time)
+        {
             
         }
         else{
             custom = [[customPopUp alloc] initWithNibName:@"customPopUp" bundle:nil];
-            [custom showInView:self.view animated:YES popUpString:@"Do you want to continue with the initials you have provided?"];
+            [custom showInView:self.view animated:YES popUpString:returnedString];
         }
     }
-    else if ([[FieldType objectAtIndex:[tapRecognizer.view tag]-1]  isEqualToString:@"VIDEO"])
+    else if ([[FieldType objectAtIndex:[tapRecognizer.view tag]-1] isEqualToString:@"VIDEO"])
     {
-        if (video_time)
+        if ([[[NSUserDefaults standardUserDefaults] stringForKey:@"video"]isEqualToString:@""])
         {
-            video_time = false;
             [self performSegueWithIdentifier:@"camera_time" sender:self];
         }
         else{
@@ -339,11 +281,10 @@ static NSMutableArray *Data;
             [custom showInView:self.view animated:YES popUpString:@"Do you want to continue with the Video you have provided?"];
         }
     }
-    else if ([[FieldType objectAtIndex:[tapRecognizer.view tag]-1]  isEqualToString:@"IMAGE"])
+    else if ([[FieldType objectAtIndex:[tapRecognizer.view tag]-1] isEqualToString:@"IMAGE"])
     {
-        if (signature_time)
+        if ([[[NSUserDefaults standardUserDefaults] stringForKey:@"signature"]isEqualToString:@""])
         {
-            signature_time = false;
             secondPopup = [[secondPopUp alloc] initWithNibName:@"Second" bundle:nil];
             [secondPopup showInView:self.view animated:YES];
         }
@@ -355,7 +296,7 @@ static NSMutableArray *Data;
     else
     {
         custom = [[customPopUp alloc] initWithNibName:@"customPopUp" bundle:nil];
-        [custom showInView:self.view animated:YES popUpString:@"hello"];
+        [custom showInView:self.view animated:YES popUpString:returnedString];
     }
     
     

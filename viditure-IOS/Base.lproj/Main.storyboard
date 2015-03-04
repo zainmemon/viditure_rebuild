@@ -425,6 +425,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
+                                    <action selector="video_viditured:" destination="erY-ZP-RNH" eventType="touchUpInside" id="Ep5-YE-Syq"/>
                                     <segue destination="PzF-2Y-P42" kind="unwind" unwindAction="unwindToVC1:" id="ZGA-tM-bUC"/>
                                 </connections>
                             </button>

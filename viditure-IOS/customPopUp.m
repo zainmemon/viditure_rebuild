@@ -13,11 +13,7 @@
 
 @end
 
-@implementation customPopUp{
-    docShow *d;
-}
-
-static NSString *popupString;
+@implementation customPopUp
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -46,10 +42,6 @@ static NSString *popupString;
 
 - (void)removeAnimate
 {
-    //[docShow sharedInstance];
-    d = [[docShow alloc]init];
-    [d kardeChange];
-    
     [UIView animateWithDuration:.25 animations:^{
         self.view.transform = CGAffineTransformMakeScale(1.3, 1.3);
         self.view.alpha = 0.0;
@@ -93,10 +85,6 @@ static NSString *popupString;
 
 - (IBAction)cancel_button:(id)sender {
     [self removeAnimate];
-}
-
-+(NSString *)returnpopUpString{
-    return popupString;
 }
 
 @end

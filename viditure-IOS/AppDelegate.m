@@ -13,6 +13,12 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"name"];
+    [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"date"];
+    [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"initials"];
+    [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"signature"];
+    [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"video"];
+    
     return YES;
 }
 							

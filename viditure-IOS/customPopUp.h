@@ -16,7 +16,7 @@
 - (IBAction)okay_button:(id)sender;
 - (IBAction)cancel_button:(id)sender;
 
-+(NSString *)returnpopUpString;
+
 @property (weak, nonatomic) IBOutlet UILabel *text_label;
 
 @end

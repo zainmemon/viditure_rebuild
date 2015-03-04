@@ -11,4 +11,7 @@
 
 @interface videoPlaying : UIViewController
 @property (strong, nonatomic) MPMoviePlayerViewController *player;
+
+- (IBAction)video_viditured:(id)sender;
+
 @end

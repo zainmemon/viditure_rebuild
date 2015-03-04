@@ -17,11 +17,12 @@
 
 @property (weak, nonatomic) IBOutlet UIView *popUpView;
 - (void)showInView:(UIView *)aView animated:(BOOL)animated;
-- (IBAction)callThirdPopUp:(id)sender;
+- (IBAction)OkayPressed:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextField *name;
 @property (weak, nonatomic) IBOutlet UITextField *DATE;
 @property (weak, nonatomic) IBOutlet UITextField *initials;
 
 - (IBAction)remove:(id)sender;
 
++(NSString *)returnRequiredString;
 @end
