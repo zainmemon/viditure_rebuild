@@ -120,7 +120,7 @@ static NSMutableArray *Data;
 {
     
     WebService *web = [[WebService alloc]init];
-    completeData = [web FilePath:@"http://dev.viditure.com/vts/signrequest/54e433ece4b0bfbc3b3d8988"parameterOne:nil];
+    completeData = [web FilePath:@"http://dev.viditure.com/vts/signrequest/54f86d9fe4b052cca8610dbe"parameterOne:nil];
     Data = [completeData valueForKey:@"dataArray"];
     NSString *authTokenValue = [[completeData valueForKey:@"Headers"]valueForKey:@"X-Auth-Token"];
     unsigned long pages_length = [[Data valueForKey:@"pages"]count];
@@ -179,7 +179,7 @@ static NSMutableArray *Data;
             
             [FieldType addObject:[[[[[[Data valueForKey:@"pages"]valueForKey:@"fields"]objectAtIndex:i]valueForKey:@"kind"]valueForKey:@"type"]objectAtIndex:k]];
             
-            field_top = [[[[[[[Data valueForKey:@"pages"]valueForKey:@"fields"]valueForKey:@"screenPos"]objectAtIndex:0]valueForKey:@"top"] objectAtIndex:k]floatValue];
+            field_top = [[[[[[[Data valueForKey:@"pages"]valueForKey:@"fields"]valueForKey:@"screenPos"]objectAtIndex:i]valueForKey:@"top"] objectAtIndex:k]floatValue];
           //  field_bottom = [[[[[[[Data valueForKey:@"pages"]valueForKey:@"fields"]valueForKey:@"screenPos"]objectAtIndex:0]valueForKey:@"bottom"] objectAtIndex:k]floatValue];
             field_left = [[[[[[[Data valueForKey:@"pages"]valueForKey:@"fields"]valueForKey:@"screenPos"]objectAtIndex:i]valueForKey:@"left"] objectAtIndex:k]floatValue];
             field_width = [[[[[[[Data valueForKey:@"pages"]valueForKey:@"fields"]valueForKey:@"screenPos"]objectAtIndex:i]valueForKey:@"width"] objectAtIndex:k]floatValue];
