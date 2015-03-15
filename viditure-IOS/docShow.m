@@ -40,9 +40,11 @@
     float field_width;
     float field_height;
     int fields_count;
+    int label_count;
     bool video_time;
     bool signature_time;
     bool text_time;
+    UILabel *returnedText;
 }
 @end
 
@@ -73,6 +75,7 @@ static NSMutableArray *Data;
     
     FieldType = [[NSMutableArray alloc]init];
     fields_count = 0;
+    label_count = 100;
     text_time = true;
     video_time = true;
     signature_time = true;
@@ -103,6 +106,7 @@ static NSMutableArray *Data;
 
 - (IBAction)vidture_action:(id)sender {
 
+    BOOL moving_time = true;
     if([[[NSUserDefaults standardUserDefaults] stringForKey:@"name"]isEqualToString:@""] || [[[NSUserDefaults standardUserDefaults] stringForKey:@"date"]isEqualToString:@""] || [[[NSUserDefaults standardUserDefaults] stringForKey:@"initials"]isEqualToString:@""])
     {
         firstPop = [[FirstPopUp alloc] initWithNibName:@"FirstPopUp" bundle:nil];
@@ -110,8 +114,19 @@ static NSMutableArray *Data;
     }
     else
     {
-        custom = [[customPopUp alloc] initWithNibName:@"customPopUp" bundle:nil];
-        [custom showInView:self.view animated:YES popUpString:@"Do you want to continue with the Name, Date and Initials you have provided?"];
+        for(int i=100; i<label_count; i++)
+        {
+            returnedText = (UILabel *)[tempView viewWithTag:i];
+            if([returnedText.text isEqualToString:@""])
+            {
+                moving_time = false;
+            }
+        }
+        if(moving_time == true)
+        {
+            custom = [[customPopUp alloc] initWithNibName:@"customPopUp" bundle:nil];
+            [custom showInView:self.view animated:YES popUpString:@"Lets Go"];
+        }
     }
     
 }
@@ -120,7 +135,7 @@ static NSMutableArray *Data;
 {
     
     WebService *web = [[WebService alloc]init];
-    completeData = [web FilePath:@"http://dev.viditure.com/vts/signrequest/54f86d9fe4b052cca8610dbe"parameterOne:nil];
+    completeData = [web FilePath:@"https://test.viditure.com/vts/signrequest/55054c90e4b0bc31b3157e5a"parameterOne:nil];
     Data = [completeData valueForKey:@"dataArray"];
     NSString *authTokenValue = [[completeData valueForKey:@"Headers"]valueForKey:@"X-Auth-Token"];
     unsigned long pages_length = [[Data valueForKey:@"pages"]count];
@@ -176,6 +191,7 @@ static NSMutableArray *Data;
         for(int k=0; k <fields_length; k ++){
             
             fields_count += 1;
+            label_count +=1;
             
             [FieldType addObject:[[[[[[Data valueForKey:@"pages"]valueForKey:@"fields"]objectAtIndex:i]valueForKey:@"kind"]valueForKey:@"type"]objectAtIndex:k]];
             
@@ -189,6 +205,7 @@ static NSMutableArray *Data;
             UiElement_height = field_height * height_ratio;
             
             docImage  = [[[[[[Data valueForKey:@"pages"]valueForKey:@"fields"]objectAtIndex:i]valueForKey:@"kind"]valueForKey:@"fieldImage_url"]objectAtIndex:k];
+            
             NSURL *VendorImageUrl = [NSURL URLWithString:docImage];
             NSData *data = [[NSData alloc]initWithContentsOfURL:VendorImageUrl];
             UIImage *ArrowImg = [[UIImage alloc]initWithData:data];
@@ -206,9 +223,16 @@ static NSMutableArray *Data;
             ArrowimageView.userInteractionEnabled = YES;
             ArrowimageView.tag = fields_count;
             [ArrowimageView addGestureRecognizer:tapRecognizer];
-            
+
             [tempView addSubview:ArrowimageView];
 
+            returnedText = [[UILabel alloc]initWithFrame:CGRectMake((field_left *width_ratio) ,((field_top * height_ratio)-(field_height *height_ratio)+ i*400 +5),200,20)];
+            
+            returnedText.text = @"";
+            returnedText.textColor = [UIColor blackColor];
+            returnedText.tag = label_count;
+            [tempView addSubview:returnedText];
+            
 //            dispatch_queue_t myqueue = dispatch_queue_create("myqueue", NULL);
 //            dispatch_async(myqueue, ^(void) {
 //                
@@ -257,17 +281,23 @@ static NSMutableArray *Data;
 {
     NSString *returnedString = [FirstPopUp returnRequiredString];
     NSLog(@"the returned string is %@",returnedString);
+    
     UITapGestureRecognizer *tapRecognizer = (UITapGestureRecognizer *)sender;
+    int clicked = [tapRecognizer.view tag]+100;
+    NSLog(@"the clicked one is %d",clicked);
+    returnedText = (UILabel *)[tempView viewWithTag:clicked];
 
     if([[FieldType objectAtIndex:[tapRecognizer.view tag]-1] isEqualToString:@"TEXT"])
     {
-        if (text_time)
+        if ([[[NSUserDefaults standardUserDefaults] stringForKey:@"name"]isEqualToString:@""])
         {
             
         }
         else{
             custom = [[customPopUp alloc] initWithNibName:@"customPopUp" bundle:nil];
             [custom showInView:self.view animated:YES popUpString:returnedString];
+            
+            returnedText.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"name"];
         }
     }
     else if ([[FieldType objectAtIndex:[tapRecognizer.view tag]-1] isEqualToString:@"VIDEO"])
@@ -279,6 +309,8 @@ static NSMutableArray *Data;
         else{
             custom = [[customPopUp alloc] initWithNibName:@"customPopUp" bundle:nil];
             [custom showInView:self.view animated:YES popUpString:@"Do you want to continue with the Video you have provided?"];
+            
+            returnedText.text = @"video";
         }
     }
     else if ([[FieldType objectAtIndex:[tapRecognizer.view tag]-1] isEqualToString:@"IMAGE"])
@@ -287,18 +319,30 @@ static NSMutableArray *Data;
         {
             secondPopup = [[secondPopUp alloc] initWithNibName:@"Second" bundle:nil];
             [secondPopup showInView:self.view animated:YES];
+
         }
         else{
             custom = [[customPopUp alloc] initWithNibName:@"customPopUp" bundle:nil];
             [custom showInView:self.view animated:YES popUpString:@"Do you want to continue with the Signature you have provided?"];
+           
+            returnedText.text = @"image";
         }
     }
-    else
+    else if ([[FieldType objectAtIndex:[tapRecognizer.view tag]-1] isEqualToString:@"DATE"])
     {
-        custom = [[customPopUp alloc] initWithNibName:@"customPopUp" bundle:nil];
-        [custom showInView:self.view animated:YES popUpString:returnedString];
+        if ([[[NSUserDefaults standardUserDefaults] stringForKey:@"date"]isEqualToString:@""])
+        {
+            secondPopup = [[secondPopUp alloc] initWithNibName:@"Second" bundle:nil];
+            [secondPopup showInView:self.view animated:YES];
+            
+        }
+        else{
+            custom = [[customPopUp alloc] initWithNibName:@"customPopUp" bundle:nil];
+            [custom showInView:self.view animated:YES popUpString:@"Do you want to continue with the Signature you have provided?"];
+            
+            returnedText.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"date"];
+        }
     }
-    
     
 }
 
