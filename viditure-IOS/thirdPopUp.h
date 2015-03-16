@@ -9,14 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "docShow.h"
 
-@interface thirdPopUp : UIViewController<UITextFieldDelegate>
+@interface thirdPopUp : UIViewController<UITextFieldDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *popUpView;
-@property (weak, nonatomic) IBOutlet UITextField *name;
-@property (weak, nonatomic) IBOutlet UITextField *date;
 @property (weak,nonatomic) UIWindow *window;
-- (IBAction)next:(id)sender;
-@property (strong,nonatomic) NSString *mydate;
+- (IBAction)TakePicture:(id)sender;
 
 - (void)showInView:(UIView *)aView animated:(BOOL)animated;
 - (IBAction)remove:(id)sender;

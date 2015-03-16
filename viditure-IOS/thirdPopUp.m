@@ -25,29 +25,16 @@
 
 - (void)viewDidLoad
 {
-    self.name.delegate = self;
-    self.date.delegate = self;
-    
+
     self.view.backgroundColor=[[UIColor blackColor] colorWithAlphaComponent:.0];
     self.popUpView.layer.cornerRadius = 5;
     self.popUpView.layer.shadowOpacity = 0.8;
     self.popUpView.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
     
-    self.date.text = self.mydate;
-    
      UIColor *color = [UIColor grayColor];
     
     CGColorRef border_color = [[UIColor colorWithRed:198.0f/255.0f green:217.0f/255.0f blue:241.0f/255.0f alpha:1.0] CGColor];
     
-    self.date.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"DATE" attributes:@{NSForegroundColorAttributeName: color}];
-    
-    self.date.layer.borderColor= border_color;
-    self.date.layer.borderWidth= 1.0f;
-    
-    self.name.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"FULL NAME" attributes:@{NSForegroundColorAttributeName: color}];
-    
-    self.name.layer.borderColor= border_color;
-    self.name.layer.borderWidth= 1.0f;
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
@@ -83,15 +70,15 @@
     }];
 }
 
-- (IBAction)next:(id)sender {
+- (IBAction)TakePicture:(id)sender
+{
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = YES;
+    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
     
-    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"camera_time"];
-    vc.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-    [self presentViewController:vc animated:YES completion:nil];
-    //[self.navigationController pushViewController:vc animated:YES];
-    
-    }
+    [self presentViewController:picker animated:YES completion:NULL];
+}
 
 - (void)showInView:(UIView *)aView animated:(BOOL)animated
 {
