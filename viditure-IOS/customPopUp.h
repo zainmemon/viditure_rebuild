@@ -14,8 +14,6 @@
 - (void)showInView:(UIView *)aView animated:(BOOL)animated popUpString:(NSString *)popUpString;
 
 - (IBAction)okay_button:(id)sender;
-- (IBAction)cancel_button:(id)sender;
-
 
 @property (weak, nonatomic) IBOutlet UILabel *text_label;
 

@@ -10,6 +10,7 @@
 #import "FirstPopUp.h"
 #import "customPopUp.h"
 #import "secondPopUp.h"
+#import "thirdPopUp.h"
 
 @interface docShow : UIViewController<UIScrollViewDelegate , UITextFieldDelegate,UIGestureRecognizerDelegate>
 

@@ -8,19 +8,19 @@
 
 #import "docShow.h"
 #import <QuartzCore/QuartzCore.h>
-#import "customPopUp.h"
 #import "WebService.h"
-#import "FirstPopUp.h"
 
 @interface docShow ()
 {
     FirstPopUp *firstPop;
     secondPopUp *secondPopup;
+    customPopUp *custom;
+    thirdPopUp *third;
+    
     UIImageView *pagesImageView;
     UIImageView *ArrowimageView;
     UITextField *signature;
     UIView *tempView;
-    customPopUp *custom;
     NSString *myString;
     NSMutableDictionary *completeData;
     
@@ -45,13 +45,12 @@
     bool signature_time;
     bool text_time;
     UILabel *returnedText;
+    NSString * docImage;
 }
 @end
 
 @implementation docShow
-{
-    NSString * docImage;
-}
+
 static NSMutableArray *Data;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -71,7 +70,7 @@ static NSMutableArray *Data;
     screenWidth = screenRect.size.width;
     screenHeight = screenRect.size.height;
     
-    //initializations//
+    // initializations begin //
     
     FieldType = [[NSMutableArray alloc]init];
     fields_count = 0;
@@ -80,7 +79,7 @@ static NSMutableArray *Data;
     video_time = true;
     signature_time = true;
     
-    //initializations end here//
+    // initializations end //
     
     [self LoadPages];
     [self.view addSubview:self.scroll];
@@ -111,15 +110,18 @@ static NSMutableArray *Data;
     {
         firstPop = [[FirstPopUp alloc] initWithNibName:@"FirstPopUp" bundle:nil];
         [firstPop showInView:self.view animated:YES];
+        
     }
     else
     {
-        for(int i=100; i<label_count; i++)
+        for(int i=100; i<=label_count; i++)
         {
             returnedText = (UILabel *)[tempView viewWithTag:i];
-            if([returnedText.text isEqualToString:@""])
+            if([returnedText.text isEqualToString:@""] || [returnedText.text isEqualToString:@"Not Filled"])
             {
                 moving_time = false;
+                returnedText.text = @"Not Filled";
+                returnedText.textColor = [UIColor redColor];
             }
         }
         if(moving_time == true)
@@ -230,6 +232,7 @@ static NSMutableArray *Data;
             
             returnedText.text = @"";
             returnedText.textColor = [UIColor blackColor];
+            returnedText.font = [UIFont fontWithName:@"Calibri" size:12.0];
             returnedText.tag = label_count;
             [tempView addSubview:returnedText];
             
@@ -291,13 +294,15 @@ static NSMutableArray *Data;
     {
         if ([[[NSUserDefaults standardUserDefaults] stringForKey:@"name"]isEqualToString:@""])
         {
-            
+            custom = [[customPopUp alloc] initWithNibName:@"customPopUp" bundle:nil];
+            [custom showInView:self.view animated:YES popUpString:@"Please press the 'Viditure' button to fill in the required fields"];
         }
         else{
             custom = [[customPopUp alloc] initWithNibName:@"customPopUp" bundle:nil];
-            [custom showInView:self.view animated:YES popUpString:returnedString];
+            [custom showInView:self.view animated:YES popUpString:@"Do you want to continue with the Name you have provided?"];
             
             returnedText.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"name"];
+            returnedText.textColor = [UIColor blackColor];
         }
     }
     else if ([[FieldType objectAtIndex:[tapRecognizer.view tag]-1] isEqualToString:@"VIDEO"])
@@ -311,6 +316,7 @@ static NSMutableArray *Data;
             [custom showInView:self.view animated:YES popUpString:@"Do you want to continue with the Video you have provided?"];
             
             returnedText.text = @"video";
+            returnedText.textColor = [UIColor blackColor];
         }
     }
     else if ([[FieldType objectAtIndex:[tapRecognizer.view tag]-1] isEqualToString:@"IMAGE"])
@@ -326,21 +332,22 @@ static NSMutableArray *Data;
             [custom showInView:self.view animated:YES popUpString:@"Do you want to continue with the Signature you have provided?"];
            
             returnedText.text = @"image";
+            returnedText.textColor = [UIColor blackColor];
         }
     }
     else if ([[FieldType objectAtIndex:[tapRecognizer.view tag]-1] isEqualToString:@"DATE"])
     {
         if ([[[NSUserDefaults standardUserDefaults] stringForKey:@"date"]isEqualToString:@""])
         {
-            secondPopup = [[secondPopUp alloc] initWithNibName:@"Second" bundle:nil];
-            [secondPopup showInView:self.view animated:YES];
-            
+            custom = [[customPopUp alloc] initWithNibName:@"customPopUp" bundle:nil];
+            [custom showInView:self.view animated:YES popUpString:@"Please press the 'Viditure' button to fill in the required fields"];
         }
         else{
             custom = [[customPopUp alloc] initWithNibName:@"customPopUp" bundle:nil];
-            [custom showInView:self.view animated:YES popUpString:@"Do you want to continue with the Signature you have provided?"];
+            [custom showInView:self.view animated:YES popUpString:@"Do you want to continue with the Date you have provided?"];
             
             returnedText.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"date"];
+            returnedText.textColor = [UIColor blackColor];
         }
     }
     

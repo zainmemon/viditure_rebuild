@@ -395,7 +395,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cqH-b4-yKA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4523" y="148"/>
+            <point key="canvasLocation" x="4526" y="148"/>
         </scene>
         <!--Video Playing - Play-->
         <scene sceneID="KcZ-Xn-lfv">
@@ -437,7 +437,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ubx-kk-QQU" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="PzF-2Y-P42" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4957" y="148"/>
+            <point key="canvasLocation" x="4967" y="148"/>
         </scene>
         <!--Video Testing-->
         <scene sceneID="oWm-Hv-N7x">

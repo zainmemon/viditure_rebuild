@@ -83,8 +83,4 @@
     [self removeAnimate];
 }
 
-- (IBAction)cancel_button:(id)sender {
-    [self removeAnimate];
-}
-
 @end
