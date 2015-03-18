@@ -225,8 +225,6 @@ static NSMutableArray *Data;
             returnedText.tag = label_count;
             [tempView addSubview:returnedText];
             
-            
-            
             }
         }
     

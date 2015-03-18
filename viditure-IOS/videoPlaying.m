@@ -15,7 +15,7 @@
 -(IBAction)playMovie:(id)sender
 {UIButton *playButton = (UIButton *) sender;
 	
-   NSString *filepath   =   [[NSBundle mainBundle] pathForResource:@"big-buck-bunny-clip" ofType:@"m4v"];
+   NSString *filepath = [[NSBundle mainBundle] pathForResource:@"big-buck-bunny-clip" ofType:@"m4v"];
     
     NSLog(@"File path is: %@", filepath);
     

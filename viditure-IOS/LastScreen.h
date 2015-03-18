@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface LastScreen : UIViewController
-- (IBAction)Back:(id)sender;
+- (IBAction)play:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *playButton;
 
 @end

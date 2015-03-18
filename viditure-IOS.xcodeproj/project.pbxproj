@@ -12,6 +12,8 @@
 		199A911319D1ABE20019BEC0 /* LastScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 199A911219D1ABE20019BEC0 /* LastScreen.m */; };
 		199BBC3B1A3F39FD00A744D4 /* customPopUp.m in Sources */ = {isa = PBXBuildFile; fileRef = 199BBC391A3F39FD00A744D4 /* customPopUp.m */; };
 		199BBC3C1A3F39FD00A744D4 /* customPopUp.xib in Resources */ = {isa = PBXBuildFile; fileRef = 199BBC3A1A3F39FD00A744D4 /* customPopUp.xib */; };
+		B73BD7781AB9978B00B29897 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B73BD7771AB9978B00B29897 /* MediaPlayer.framework */; };
+		B73BD77B1AB9B43500B29897 /* test.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = B73BD7791AB99C9500B29897 /* test.mp4 */; };
 		DCCC8BDC19A6149900FEE79A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCCC8BDB19A6149900FEE79A /* Foundation.framework */; };
 		DCCC8BDE19A6149900FEE79A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCCC8BDD19A6149900FEE79A /* CoreGraphics.framework */; };
 		DCCC8BE019A6149900FEE79A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCCC8BDF19A6149900FEE79A /* UIKit.framework */; };
@@ -62,6 +64,8 @@
 		199BBC381A3F39FD00A744D4 /* customPopUp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = customPopUp.h; sourceTree = "<group>"; };
 		199BBC391A3F39FD00A744D4 /* customPopUp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = customPopUp.m; sourceTree = "<group>"; };
 		199BBC3A1A3F39FD00A744D4 /* customPopUp.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = customPopUp.xib; sourceTree = "<group>"; };
+		B73BD7771AB9978B00B29897 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		B73BD7791AB99C9500B29897 /* test.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.mp4; sourceTree = "<group>"; };
 		DCCC8BD819A6149900FEE79A /* viditure-IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "viditure-IOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCCC8BDB19A6149900FEE79A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DCCC8BDD19A6149900FEE79A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -111,6 +115,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B73BD7781AB9978B00B29897 /* MediaPlayer.framework in Frameworks */,
 				DCCC8BDE19A6149900FEE79A /* CoreGraphics.framework in Frameworks */,
 				DCCC8BE019A6149900FEE79A /* UIKit.framework in Frameworks */,
 				DCCC8BDC19A6149900FEE79A /* Foundation.framework in Frameworks */,
@@ -130,9 +135,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B73BD77A1AB9A09B00B29897 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B73BD7791AB99C9500B29897 /* test.mp4 */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		DCCC8BCF19A6149900FEE79A = {
 			isa = PBXGroup;
 			children = (
+				B73BD77A1AB9A09B00B29897 /* Resources */,
 				DCCC8BE119A6149900FEE79A /* viditure-IOS */,
 				DCCC8C0019A6149900FEE79A /* viditure-IOSTests */,
 				DCCC8BDA19A6149900FEE79A /* Frameworks */,
@@ -152,6 +166,7 @@
 		DCCC8BDA19A6149900FEE79A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B73BD7771AB9978B00B29897 /* MediaPlayer.framework */,
 				DCCC8BDB19A6149900FEE79A /* Foundation.framework */,
 				DCCC8BDD19A6149900FEE79A /* CoreGraphics.framework */,
 				DCCC8BDF19A6149900FEE79A /* UIKit.framework */,
@@ -312,6 +327,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B73BD77B1AB9B43500B29897 /* test.mp4 in Resources */,
 				DCCC8BF419A6149900FEE79A /* Images.xcassets in Resources */,
 				199BBC3C1A3F39FD00A744D4 /* customPopUp.xib in Resources */,
 				DCCC8BE619A6149900FEE79A /* InfoPlist.strings in Resources */,

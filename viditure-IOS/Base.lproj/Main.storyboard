@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="12E4022" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="XrG-Lc-rp8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="7UY-qu-r1x">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
         <!--Register-->
@@ -133,7 +134,7 @@
             </objects>
             <point key="canvasLocation" x="1622" y="142"/>
         </scene>
-        <!--Doc Show - Document-->
+        <!--Document-->
         <scene sceneID="cDB-ZQ-rvP">
             <objects>
                 <viewController storyboardIdentifier="document" id="Wf4-lZ-Rb7" customClass="docShow" sceneMemberID="viewController">
@@ -194,7 +195,7 @@
             </objects>
             <point key="canvasLocation" x="3619" y="148"/>
         </scene>
-        <!--Test Camera - Test Camera-->
+        <!--Test Camera-->
         <scene sceneID="OUj-2p-OvM">
             <objects>
                 <viewController storyboardIdentifier="camera_time" id="FSW-Yh-ee7" customClass="TestCamera" sceneMemberID="viewController">
@@ -259,7 +260,7 @@
             </objects>
             <point key="canvasLocation" x="4091" y="148"/>
         </scene>
-        <!--Last Screen - Title-->
+        <!--Title-->
         <scene sceneID="EiI-s0-Y7X">
             <objects>
                 <viewController storyboardIdentifier="lastScreen" id="Beq-hC-Ya3" customClass="LastScreen" sceneMemberID="viewController">
@@ -298,7 +299,7 @@
             </objects>
             <point key="canvasLocation" x="4702" y="-529"/>
         </scene>
-        <!--Video Recording - Record Video-->
+        <!--Record Video-->
         <scene sceneID="STz-YF-Gj2">
             <objects>
                 <viewController id="e8D-9L-rb8" customClass="videoRecording" sceneMemberID="viewController">
@@ -373,7 +374,7 @@
             </objects>
             <point key="canvasLocation" x="4526" y="148"/>
         </scene>
-        <!--Video Playing - Play-->
+        <!--Play-->
         <scene sceneID="KcZ-Xn-lfv">
             <objects>
                 <viewController id="erY-ZP-RNH" customClass="videoPlaying" sceneMemberID="viewController">
@@ -413,10 +414,10 @@
             </objects>
             <point key="canvasLocation" x="4967" y="148"/>
         </scene>
-        <!--Video Testing-->
+        <!--Last Screen-->
         <scene sceneID="oWm-Hv-N7x">
             <objects>
-                <viewController id="7UY-qu-r1x" customClass="videoTesting" sceneMemberID="viewController">
+                <viewController id="7UY-qu-r1x" customClass="LastScreen" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="edW-zc-FEd"/>
                         <viewControllerLayoutGuide type="bottom" id="1sW-fy-2ii"/>
@@ -426,23 +427,26 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zEo-zi-LBz">
-                                <rect key="frame" x="33" y="108" width="259" height="178"/>
+                                <rect key="frame" x="31" y="108" width="259" height="178"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Play">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="playMovie:" destination="7UY-qu-r1x" eventType="touchUpInside" id="Ewd-Lg-0ex"/>
+                                    <action selector="play:" destination="7UY-qu-r1x" eventType="touchUpInside" id="N5G-bS-kZq"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="playButton" destination="zEo-zi-LBz" id="oXt-Ga-u5T"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gwO-hn-PNW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6803" y="178"/>
+            <point key="canvasLocation" x="6110" y="132"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="xIh-Bq-Sx8">
