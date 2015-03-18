@@ -16,7 +16,6 @@
 @property (weak, nonatomic) IBOutlet UIView *popUpView;
 
 - (IBAction)callThirdPopUp:(id)sender;
-@property (weak, nonatomic) IBOutlet UITextField *Date;
 @property (readwrite, nonatomic) float alphaValue;
 - (void)showInView:(UIView *)aView animated:(BOOL)animated;
 

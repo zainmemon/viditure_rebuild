@@ -18,6 +18,7 @@
     [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"initials"];
     [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"signature"];
     [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"video"];
+    [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"image"];
     
     return YES;
 }

@@ -148,38 +148,24 @@ static NSMutableArray *Data;
           //  NSLog(@"the _id is: %@",[[[Data valueForKey:@"pages"]valueForKey:@"pageImage_url"] objectAtIndex:i]);
     
         fields_length = [[[[Data valueForKey:@"pages"]objectAtIndex:i] valueForKey:@"fields"] count];
-
-    
-    signature = [[UITextField alloc]initWithFrame:CGRectMake(80,100,150,30)];
-    [signature setBorderStyle:UITextBorderStyleRoundedRect];
-    [signature setBackgroundColor:[UIColor lightGrayColor]];
-    [signature setPlaceholder:@"Please sign here"];
-    [signature setTextColor:[UIColor whiteColor]];
         
-        
-        NSData *imageData = [web returnImageData:[[[Data valueForKey:@"pages"]valueForKey:@"pageImage_url"] objectAtIndex:i] AuthTokenValue:authTokenValue];
-        UIImage *img = [[UIImage alloc]initWithData:imageData];
         pagesImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0,i*400, 320, 400)];
         
-        pagesImageView.image = img;
-        [tempView addSubview:pagesImageView];
-        
-//        dispatch_queue_t myqueue = dispatch_queue_create("myqueue", NULL);
-//        dispatch_async(myqueue, ^(void) {
-//            
-//
-//
-//            
-//            
-//            
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                // Update UI on main queue
-//                
-//                
-//                
-//            });
-//            
-//        });
+        dispatch_queue_t myqueue = dispatch_queue_create("myqueue", NULL);
+        dispatch_async(myqueue, ^(void) {
+            
+            NSData *imageData = [web returnImageData:[[[Data valueForKey:@"pages"]valueForKey:@"pageImage_url"] objectAtIndex:i] AuthTokenValue:authTokenValue];
+            UIImage *img = [[UIImage alloc]initWithData:imageData];
+            
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // Update UI on main queue
+                
+                pagesImageView.image = img;
+                [tempView addSubview:pagesImageView];
+            });
+            
+        });
 
         page_width = [[[[[Data valueForKey:@"pages"]valueForKey:@"pagePosition"]valueForKey:@"width" ] objectAtIndex:i]floatValue];
         page_height = [[[[[Data valueForKey:@"pages"]valueForKey:@"pagePosition"]valueForKey:@"height" ] objectAtIndex:i]floatValue];
@@ -190,7 +176,7 @@ static NSMutableArray *Data;
         
         
     if(fields_length>0){
-        for(int k=0; k <fields_length; k ++){
+        for(int k=0; k <1; k ++){
             
             fields_count += 1;
             label_count +=1;
@@ -236,18 +222,18 @@ static NSMutableArray *Data;
             returnedText.tag = label_count;
             [tempView addSubview:returnedText];
             
-//            dispatch_queue_t myqueue = dispatch_queue_create("myqueue", NULL);
-//            dispatch_async(myqueue, ^(void) {
-//                
-//                
-//                dispatch_async(dispatch_get_main_queue(), ^{
-//                    // Update UI on main queue
-//                    
-//                    
-//                    
-//                });
-//                
-//            });
+            dispatch_queue_t myqueue = dispatch_queue_create("myqueue", NULL);
+            dispatch_async(myqueue, ^(void) {
+                
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    // Update UI on main queue
+                    
+                    
+                    
+                });
+                
+            });
             
             }
         }
@@ -323,8 +309,8 @@ static NSMutableArray *Data;
     {
         if ([[[NSUserDefaults standardUserDefaults] stringForKey:@"signature"]isEqualToString:@""])
         {
-            secondPopup = [[secondPopUp alloc] initWithNibName:@"Second" bundle:nil];
-            [secondPopup showInView:self.view animated:YES];
+            third = [[thirdPopUp alloc] initWithNibName:@"Third" bundle:nil];
+            [third showInView:self.view animated:YES];
 
         }
         else{

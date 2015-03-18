@@ -26,14 +26,10 @@
 - (void)viewDidLoad
 {
 
-    self.view.backgroundColor=[[UIColor blackColor] colorWithAlphaComponent:.0];
+    self.view.backgroundColor=[[UIColor blackColor] colorWithAlphaComponent:.6];
     self.popUpView.layer.cornerRadius = 5;
     self.popUpView.layer.shadowOpacity = 0.8;
     self.popUpView.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
-    
-     UIColor *color = [UIColor grayColor];
-    
-    CGColorRef border_color = [[UIColor colorWithRed:198.0f/255.0f green:217.0f/255.0f blue:241.0f/255.0f alpha:1.0] CGColor];
     
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -50,9 +46,7 @@
 - (void)showAnimate
 {
     self.view.transform = CGAffineTransformMakeScale(1.3, 1.3);
-    self.view.alpha = 0;
     [UIView animateWithDuration:.25 animations:^{
-        self.view.alpha = 1;
         self.view.transform = CGAffineTransformMakeScale(1, 1);
     }];
     
@@ -80,6 +74,15 @@
     [self presentViewController:picker animated:YES completion:NULL];
 }
 
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+    self.imageView.image = chosenImage;
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+}
+
 - (void)showInView:(UIView *)aView animated:(BOOL)animated
 {
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -91,7 +94,14 @@
     });
 }
 
-- (IBAction)remove:(id)sender {
+- (IBAction)remove:(id)sender
+{
+    [self removeAnimate];
+}
+
+- (IBAction)Okay:(id)sender
+{
+    [[NSUserDefaults standardUserDefaults] setObject:@"image_done" forKey:@"image"];
     [self removeAnimate];
 }
 

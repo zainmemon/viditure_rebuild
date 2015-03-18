@@ -90,7 +90,6 @@ static NSString *requiredString;
         }
         
     }];
- 
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {

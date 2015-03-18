@@ -32,18 +32,12 @@
 
 - (void)viewDidLoad
 {
-    self.Date.delegate = self;
+    
     
     self.view.backgroundColor=[[UIColor blackColor] colorWithAlphaComponent:self.alphaValue];
     self.popUpView.layer.cornerRadius = 5;
     self.popUpView.layer.shadowOpacity = 0.8;
     self.popUpView.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
-    
-    UIColor *color = [UIColor grayColor];
-    self.Date.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Date" attributes:@{NSForegroundColorAttributeName: color}];
-    
-    self.Date.layer.borderColor=[[UIColor colorWithRed:198.0f/255.0f green:217.0f/255.0f blue:241.0f/255.0f alpha:1.0] CGColor];
-    self.Date.layer.borderWidth= 1.0f;
     
     [self.drawingPad setBackgroundColor:[UIColor lightGrayColor]];
     

@@ -17,5 +17,7 @@
 
 - (void)showInView:(UIView *)aView animated:(BOOL)animated;
 - (IBAction)remove:(id)sender;
+- (IBAction)Okay:(id)sender;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @end
