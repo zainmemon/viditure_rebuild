@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="XrG-Lc-rp8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="12E4022" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="XrG-Lc-rp8">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--Register-->
@@ -10,8 +9,8 @@
             <objects>
                 <viewController id="kKR-Kv-2Gm" customClass="Register" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="lHZ-2I-3Xz"/>
-                        <viewControllerLayoutGuide type="bottom" id="HQe-Hw-UJk"/>
+                        <viewControllerLayoutGuide type="top" id="qn9-uP-RXd"/>
+                        <viewControllerLayoutGuide type="bottom" id="99S-NW-PAP"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="EYn-FP-biE">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
@@ -61,8 +60,8 @@
             <objects>
                 <viewController id="x7r-Xv-ojc" customClass="Login" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="GZa-EM-zHG"/>
-                        <viewControllerLayoutGuide type="bottom" id="42h-f3-m2Y"/>
+                        <viewControllerLayoutGuide type="top" id="FGr-n2-yLq"/>
+                        <viewControllerLayoutGuide type="bottom" id="cBa-aS-Dlv"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="NJw-wz-l0x">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
@@ -134,20 +133,20 @@
             </objects>
             <point key="canvasLocation" x="1622" y="142"/>
         </scene>
-        <!--Document-->
+        <!--Doc Show - Document-->
         <scene sceneID="cDB-ZQ-rvP">
             <objects>
                 <viewController storyboardIdentifier="document" id="Wf4-lZ-Rb7" customClass="docShow" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="s9y-5C-80n"/>
-                        <viewControllerLayoutGuide type="bottom" id="iSr-mO-jff"/>
+                        <viewControllerLayoutGuide type="top" id="Ck9-CT-v6P"/>
+                        <viewControllerLayoutGuide type="bottom" id="eOC-wH-Wut"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Tbw-8W-voB">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tdj-Bk-chn">
-                                <rect key="frame" x="100" y="423" width="130" height="37"/>
+                                <rect key="frame" x="100" y="435" width="130" height="37"/>
                                 <color key="backgroundColor" red="0.29411764709999999" green="0.63529411759999999" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Start Vidituring">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -158,31 +157,29 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="clip" translatesAutoresizingMaskIntoConstraints="NO" id="2zz-sZ-2ps">
-                                <rect key="frame" x="255" y="73" width="40" height="42"/>
+                                <rect key="frame" x="255" y="67" width="40" height="40"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="print" translatesAutoresizingMaskIntoConstraints="NO" id="Xk3-hl-Zez">
-                                <rect key="frame" x="212" y="76" width="41" height="36"/>
+                                <rect key="frame" x="212" y="67" width="40" height="40"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="doc#" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Wi-g3-qkh">
-                                <rect key="frame" x="25" y="83" width="39" height="21"/>
+                                <rect key="frame" x="25" y="76" width="39" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A3v-TS-Sbx">
-                                <rect key="frame" x="0.0" y="126" width="320" height="286"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A3v-TS-Sbx">
+                                <rect key="frame" x="0.0" y="65" width="320" height="376"/>
                                 <connections>
                                     <outlet property="delegate" destination="Wf4-lZ-Rb7" id="WPZ-AL-Gnn"/>
                                 </connections>
                             </scrollView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Testing" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jH5-Wr-1aS">
-                                <rect key="frame" x="117" y="84" width="59" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="eOC-wH-Wut" firstAttribute="top" secondItem="A3v-TS-Sbx" secondAttribute="bottom" constant="50" id="N6q-WF-OSn"/>
+                            <constraint firstItem="A3v-TS-Sbx" firstAttribute="top" secondItem="Ck9-CT-v6P" secondAttribute="bottom" constant="50" id="mdq-ym-6dd"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Document" id="f0r-wb-PUu">
                         <barButtonItem key="backBarButtonItem" title="Back" id="opY-ec-HfU"/>
@@ -190,21 +187,20 @@
                     <connections>
                         <outlet property="scroll" destination="A3v-TS-Sbx" id="xzJ-Xf-c98"/>
                         <outlet property="start_vidturing" destination="tdj-Bk-chn" id="UrI-1k-vzo"/>
-                        <outlet property="testing_label" destination="jH5-Wr-1aS" id="Zin-KI-z2C"/>
                         <segue destination="FSW-Yh-ee7" kind="push" identifier="camera_time" id="0tw-bW-myu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DZk-N7-WSC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3631" y="148"/>
+            <point key="canvasLocation" x="3619" y="148"/>
         </scene>
-        <!--Test Camera-->
+        <!--Test Camera - Test Camera-->
         <scene sceneID="OUj-2p-OvM">
             <objects>
                 <viewController storyboardIdentifier="camera_time" id="FSW-Yh-ee7" customClass="TestCamera" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="j0r-Jt-pXm"/>
-                        <viewControllerLayoutGuide type="bottom" id="MOO-r2-fzF"/>
+                        <viewControllerLayoutGuide type="top" id="QTx-zn-yTc"/>
+                        <viewControllerLayoutGuide type="bottom" id="ejz-Am-wKM"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Esa-2c-tYr">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
@@ -263,13 +259,13 @@
             </objects>
             <point key="canvasLocation" x="4091" y="148"/>
         </scene>
-        <!--Title-->
+        <!--Last Screen - Title-->
         <scene sceneID="EiI-s0-Y7X">
             <objects>
                 <viewController storyboardIdentifier="lastScreen" id="Beq-hC-Ya3" customClass="LastScreen" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="La4-65-TiH"/>
-                        <viewControllerLayoutGuide type="bottom" id="T0N-F8-hJg"/>
+                        <viewControllerLayoutGuide type="top" id="dM3-Iw-d31"/>
+                        <viewControllerLayoutGuide type="bottom" id="Aay-12-veA"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="9fT-G6-nbu">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
@@ -302,13 +298,13 @@
             </objects>
             <point key="canvasLocation" x="4702" y="-529"/>
         </scene>
-        <!--Record Video-->
+        <!--Video Recording - Record Video-->
         <scene sceneID="STz-YF-Gj2">
             <objects>
                 <viewController id="e8D-9L-rb8" customClass="videoRecording" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="sh7-5w-wAK"/>
-                        <viewControllerLayoutGuide type="bottom" id="vTn-B2-Gq9"/>
+                        <viewControllerLayoutGuide type="top" id="09K-PK-of7"/>
+                        <viewControllerLayoutGuide type="bottom" id="k9u-Gh-WyE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="DC0-xM-812">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
@@ -377,13 +373,13 @@
             </objects>
             <point key="canvasLocation" x="4526" y="148"/>
         </scene>
-        <!--Play-->
+        <!--Video Playing - Play-->
         <scene sceneID="KcZ-Xn-lfv">
             <objects>
                 <viewController id="erY-ZP-RNH" customClass="videoPlaying" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="oaD-RS-mT6"/>
-                        <viewControllerLayoutGuide type="bottom" id="cfZ-WN-iVi"/>
+                        <viewControllerLayoutGuide type="top" id="SLe-m5-mjY"/>
+                        <viewControllerLayoutGuide type="bottom" id="39B-de-PEK"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="9EX-c1-2SZ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
@@ -422,8 +418,8 @@
             <objects>
                 <viewController id="7UY-qu-r1x" customClass="videoTesting" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Zdc-r3-OOx"/>
-                        <viewControllerLayoutGuide type="bottom" id="VK1-YV-p3Z"/>
+                        <viewControllerLayoutGuide type="top" id="edW-zc-FEd"/>
+                        <viewControllerLayoutGuide type="bottom" id="1sW-fy-2ii"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="dHb-xx-1Ww">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>

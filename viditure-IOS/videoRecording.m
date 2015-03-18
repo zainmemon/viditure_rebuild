@@ -156,7 +156,7 @@ double timeToStop;
             [session addOutput:movieFileOutput];
             AVCaptureConnection *connection = [movieFileOutput connectionWithMediaType:AVMediaTypeVideo];
             if ([connection isVideoStabilizationSupported])
-                [connection setPreferredVideoStabilizationMode:YES];
+                [connection setEnablesVideoStabilizationWhenAvailable:YES];
             [self setMovieFileOutput:movieFileOutput];
         }
         

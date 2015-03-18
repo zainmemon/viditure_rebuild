@@ -41,11 +41,11 @@
     float field_height;
     int fields_count;
     int label_count;
-    bool video_time;
-    bool signature_time;
-    bool text_time;
     UILabel *returnedText;
     NSString * docImage;
+    UIActivityIndicatorView *progress;
+    UILabel *progressStatus;
+    
 }
 @end
 
@@ -72,17 +72,30 @@ static NSMutableArray *Data;
     
     // initializations begin //
     
+    progress = [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(130, 200, 50, 50)];
+    progress.color = [UIColor blackColor];
+    
+    progressStatus = [[UILabel alloc]initWithFrame:CGRectMake(100, 230, 200, 50)];
+    progressStatus.text = @"Loading Pages";
+    progressStatus.font = [UIFont fontWithName:@"Calibri" size:13.0];
+    progressStatus.textColor = [UIColor blackColor];
+    progressStatus.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:progressStatus];
+    
+    [self.view addSubview:progress];
+    [progress startAnimating];
+    
     FieldType = [[NSMutableArray alloc]init];
     fields_count = 0;
     label_count = 100;
-    text_time = true;
-    video_time = true;
-    signature_time = true;
     
     // initializations end //
     
-    [self LoadPages];
-    [self.view addSubview:self.scroll];
+    NSThread* myThread = [[NSThread alloc] initWithTarget:self
+                                                 selector:@selector(LoadPages)
+                                                   object:nil];
+    [myThread start];  // Actually create the thread
+    
     signature.delegate = self;
     
     [[self scroll]setMaximumZoomScale:3.0f];
@@ -151,21 +164,11 @@ static NSMutableArray *Data;
         
         pagesImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0,i*400, 320, 400)];
         
-        dispatch_queue_t myqueue = dispatch_queue_create("myqueue", NULL);
-        dispatch_async(myqueue, ^(void) {
-            
             NSData *imageData = [web returnImageData:[[[Data valueForKey:@"pages"]valueForKey:@"pageImage_url"] objectAtIndex:i] AuthTokenValue:authTokenValue];
             UIImage *img = [[UIImage alloc]initWithData:imageData];
             
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                // Update UI on main queue
-                
-                pagesImageView.image = img;
-                [tempView addSubview:pagesImageView];
-            });
-            
-        });
+            pagesImageView.image = img;
+            [tempView addSubview:pagesImageView];
 
         page_width = [[[[[Data valueForKey:@"pages"]valueForKey:@"pagePosition"]valueForKey:@"width" ] objectAtIndex:i]floatValue];
         page_height = [[[[[Data valueForKey:@"pages"]valueForKey:@"pagePosition"]valueForKey:@"height" ] objectAtIndex:i]floatValue];
@@ -176,7 +179,7 @@ static NSMutableArray *Data;
         
         
     if(fields_length>0){
-        for(int k=0; k <1; k ++){
+        for(int k=0; k <fields_length; k ++){
             
             fields_count += 1;
             label_count +=1;
@@ -222,18 +225,7 @@ static NSMutableArray *Data;
             returnedText.tag = label_count;
             [tempView addSubview:returnedText];
             
-            dispatch_queue_t myqueue = dispatch_queue_create("myqueue", NULL);
-            dispatch_async(myqueue, ^(void) {
-                
-                
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    // Update UI on main queue
-                    
-                    
-                    
-                });
-                
-            });
+            
             
             }
         }
@@ -246,6 +238,9 @@ static NSMutableArray *Data;
     self.scroll.showsVerticalScrollIndicator = YES;
     self.scroll.showsHorizontalScrollIndicator = NO;
     
+    [self.view addSubview:self.scroll];
+    [progress stopAnimating];
+    [progressStatus removeFromSuperview];
 }
 
 -(UIView *) viewForZoomingInScrollView:(UIScrollView *)scrollView
