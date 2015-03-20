@@ -814,6 +814,7 @@ double timeToStop;
     });
 }
 */
+
 - (IBAction)viditure:(id)sender {
 //    NSString *outputFilePath = [NSTemporaryDirectory() stringByAppendingPathComponent:[@"movie" stringByAppendingPathExtension:@"mov"]];
 //    [[self movieFileOutput] startRecordingToOutputFileURL:[NSURL fileURLWithPath:outputFilePath] recordingDelegate:self];
