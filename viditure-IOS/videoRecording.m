@@ -813,12 +813,12 @@ double timeToStop;
         
     });
 }
-
-- (IBAction)viditure:(id)sender {
-    NSString *outputFilePath = [NSTemporaryDirectory() stringByAppendingPathComponent:[@"movie" stringByAppendingPathExtension:@"mov"]];
-    [[self movieFileOutput] startRecordingToOutputFileURL:[NSURL fileURLWithPath:outputFilePath] recordingDelegate:self];
-
-    //[self performSegueWithIdentifier:@"video_playingTime" sender:self];
-}
 */
+- (IBAction)viditure:(id)sender {
+//    NSString *outputFilePath = [NSTemporaryDirectory() stringByAppendingPathComponent:[@"movie" stringByAppendingPathExtension:@"mov"]];
+//    [[self movieFileOutput] startRecordingToOutputFileURL:[NSURL fileURLWithPath:outputFilePath] recordingDelegate:self];
+
+    [self performSegueWithIdentifier:@"video_playingTime" sender:self];
+}
+
 @end

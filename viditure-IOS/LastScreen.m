@@ -30,11 +30,13 @@
 {
     [super viewDidLoad];
     
+    NSString *url = [[NSBundle mainBundle]pathForResource:@"test" ofType:@"mp4"];
     
-//    MPMoviePlayerController *player = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL fileURLWithPath:@"http://www.ebookfrenzy.com/ios_book/movie/movie.mov"]];
-//    player.view.frame = CGRectMake(20, 20, 280, 300);
-//    [self.view addSubview:player.view];
-//    [player play];
+    _moviePlayer =[[MPMoviePlayerController alloc]initWithContentURL:[NSURL fileURLWithPath:url]];
+    
+    _moviePlayer.view.frame = CGRectMake(20, 20, 280, 300);
+    [self.view addSubview:_moviePlayer.view];
+    [_moviePlayer play];
     
     
 }

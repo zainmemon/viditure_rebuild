@@ -10,44 +10,22 @@
 
 
 @implementation videoPlaying
-
-
--(IBAction)playMovie:(id)sender
-{UIButton *playButton = (UIButton *) sender;
-	
-   NSString *filepath = [[NSBundle mainBundle] pathForResource:@"big-buck-bunny-clip" ofType:@"m4v"];
-    
-    NSLog(@"File path is: %@", filepath);
-    
-    NSURL    *fileURL    =   [NSURL fileURLWithPath:filepath];
-    MPMoviePlayerController *moviePlayerController = [[MPMoviePlayerController alloc] initWithContentURL:fileURL];
-	
-    [[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(moviePlaybackComplete:)
-												 name:MPMoviePlayerPlaybackDidFinishNotification
-											   object:moviePlayerController];
-	
-	[moviePlayerController.view setFrame:CGRectMake(playButton.frame.origin.x,
-													playButton.frame.origin.y,
-													playButton.frame.size.width,
-													playButton.frame.size.height)];
-    
-	[self.view addSubview:moviePlayerController.view];
-    //moviePlayerController.fullscreen = YES;
-	
-	//moviePlayerController.scalingMode = MPMovieScalingModeFill;
-	
-    [moviePlayerController play];
+{
+    MPMoviePlayerController *_moviePlayer;
 }
 
-- (void)moviePlaybackComplete:(NSNotification *)notification
+- (void)viewDidLoad
 {
-    MPMoviePlayerController *moviePlayerController = [notification object];
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-													name:MPMoviePlayerPlaybackDidFinishNotification
-												  object:moviePlayerController];
-	
-    [moviePlayerController.view removeFromSuperview];
+	[super viewDidLoad];
+    
+    NSString *url = [[NSBundle mainBundle]pathForResource:@"test" ofType:@"mp4"];
+    
+    _moviePlayer =[[MPMoviePlayerController alloc]initWithContentURL:[NSURL fileURLWithPath:url]];
+    
+    _moviePlayer.view.frame = CGRectMake(20, 80, 280, 260);
+    [self.view addSubview:_moviePlayer.view];
+    [_moviePlayer play];
+    
 }
 
 - (IBAction)video_viditured:(id)sender {
