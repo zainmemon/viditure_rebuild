@@ -18,13 +18,26 @@
 {
 	[super viewDidLoad];
     
-    NSString *url = [[NSBundle mainBundle]pathForResource:@"test" ofType:@"mp4"];
+    NSString *documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentationDirectory, NSUserDomainMask, YES)objectAtIndex:0];
+    NSString *file = [documentPath stringByAppendingPathComponent:@"movie.mov"];
+    NSURL *url = [NSURL fileURLWithPath:file];
     
-    _moviePlayer =[[MPMoviePlayerController alloc]initWithContentURL:[NSURL fileURLWithPath:url]];
+    BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:file];
+    if(fileExists)
+    {
+        _moviePlayer = [[MPMoviePlayerController alloc]initWithContentURL:url];
+        _moviePlayer.view.frame = CGRectMake(20, 80, 280, 260);
+         [self.view addSubview:_moviePlayer.view];
+         [_moviePlayer play];
+    }
     
-    _moviePlayer.view.frame = CGRectMake(20, 80, 280, 260);
-    [self.view addSubview:_moviePlayer.view];
-    [_moviePlayer play];
+    //NSString *url = [[NSBundle mainBundle]pathForResource:@"movie" ofType:@"mov"];
+    
+//    _moviePlayer =[[MPMoviePlayerController alloc]initWithContentURL:[NSURL fileURLWithPath:url]];
+//    
+//    _moviePlayer.view.frame = CGRectMake(20, 80, 280, 260);
+//    [self.view addSubview:_moviePlayer.view];
+//    [_moviePlayer play];
     
 }
 

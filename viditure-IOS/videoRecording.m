@@ -296,8 +296,22 @@ double timeToStop;
           //  [AVCamViewController setFlashMode:AVCaptureFlashModeOff forDevice:[[self videoDeviceInput] device]];
             
             // Start recording to a temporary file.
-            NSString *outputFilePath = [NSTemporaryDirectory() stringByAppendingPathComponent:[@"movie" stringByAppendingPathExtension:@"mov"]];
-            [[self movieFileOutput] startRecordingToOutputFileURL:[NSURL fileURLWithPath:outputFilePath] recordingDelegate:self];
+          //  NSString *outputFilePath = [NSTemporaryDirectory() stringByAppendingPathComponent:[@"movie" stringByAppendingPathExtension:@"mov"]];
+            //[[self movieFileOutput] startRecordingToOutputFileURL:[NSURL fileURLWithPath:outputFilePath] recordingDelegate:self];
+            
+            
+            NSString *DestFilename = @"movie.mov";
+            
+            //Set the file save to URL
+            NSLog(@"Starting recording to file: %@", DestFilename);
+            NSString *DestPath;
+            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+            DestPath = [paths objectAtIndex:0];
+            DestPath = [DestPath stringByAppendingPathComponent:DestFilename];
+            
+            NSURL* saveLocationURL = [[NSURL alloc] initFileURLWithPath:DestPath];
+            [[self movieFileOutput] startRecordingToOutputFileURL:saveLocationURL recordingDelegate:self];
+
         }
         else
         {
@@ -392,7 +406,7 @@ double timeToStop;
 {
     NSArray *devices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
     for (AVCaptureDevice *device in devices) {
-        if ([device position] == AVCaptureDevicePositionFront) {
+        if ([device position] == AVCaptureDevicePositionBack) {
             return device;
         }
     }
