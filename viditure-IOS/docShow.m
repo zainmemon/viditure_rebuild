@@ -99,12 +99,6 @@ static NSMutableArray *Data;
     signature.delegate = self;
     
     [[self scroll]setMaximumZoomScale:3.0f];
-    
-    self.testing_label.userInteractionEnabled = YES;
-    UITapGestureRecognizer *tapGesture =
-    [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(labelTap)];
-    [self.testing_label addGestureRecognizer:tapGesture];
-    [self.testing_label setTextColor:[UIColor blackColor]];
  
 }
 
@@ -250,13 +244,6 @@ static NSMutableArray *Data;
 {
     [textField resignFirstResponder];
     return YES;
-}
-
--(void)labelTap
-{
-    custom = [[customPopUp alloc] initWithNibName:@"customPopUp" bundle:nil];
-   // [custom showInView:self.view animated:YES];
-    
 }
 
 -(void)DynamicLabelTap: (id)sender

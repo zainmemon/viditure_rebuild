@@ -78,7 +78,7 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
 
 @implementation videoRecording
 double timeToStop;
-
+/*
 - (BOOL)isSessionRunningAndDeviceAuthorized
 {
     return [[self session] isRunning] && [self isDeviceAuthorized];
@@ -156,7 +156,7 @@ double timeToStop;
             [session addOutput:movieFileOutput];
             AVCaptureConnection *connection = [movieFileOutput connectionWithMediaType:AVMediaTypeVideo];
             if ([connection isVideoStabilizationSupported])
-                [connection setEnablesVideoStabilizationWhenAvailable:YES];
+                [connection setPreferredVideoStabilizationMode:YES];
             [self setMovieFileOutput:movieFileOutput];
         }
         
@@ -296,21 +296,21 @@ double timeToStop;
           //  [AVCamViewController setFlashMode:AVCaptureFlashModeOff forDevice:[[self videoDeviceInput] device]];
             
             // Start recording to a temporary file.
-          //  NSString *outputFilePath = [NSTemporaryDirectory() stringByAppendingPathComponent:[@"movie" stringByAppendingPathExtension:@"mov"]];
-            //[[self movieFileOutput] startRecordingToOutputFileURL:[NSURL fileURLWithPath:outputFilePath] recordingDelegate:self];
+            NSString *outputFilePath = [NSTemporaryDirectory() stringByAppendingPathComponent:[@"movie" stringByAppendingPathExtension:@"mov"]];
+            [[self movieFileOutput] startRecordingToOutputFileURL:[NSURL fileURLWithPath:outputFilePath] recordingDelegate:self];
             
             
-            NSString *DestFilename = @"movie.mov";
-            
-            //Set the file save to URL
-            NSLog(@"Starting recording to file: %@", DestFilename);
-            NSString *DestPath;
-            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-            DestPath = [paths objectAtIndex:0];
-            DestPath = [DestPath stringByAppendingPathComponent:DestFilename];
-            
-            NSURL* saveLocationURL = [[NSURL alloc] initFileURLWithPath:DestPath];
-            [[self movieFileOutput] startRecordingToOutputFileURL:saveLocationURL recordingDelegate:self];
+//            NSString *DestFilename = @"movie.mov";
+//            
+//            //Set the file save to URL
+//            NSLog(@"Starting recording to file: %@", DestFilename);
+//            NSString *DestPath;
+//            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//            DestPath = [paths objectAtIndex:0];
+//            DestPath = [DestPath stringByAppendingPathComponent:DestFilename];
+//            
+//            NSURL* saveLocationURL = [[NSURL alloc] initFileURLWithPath:DestPath];
+//            [[self movieFileOutput] startRecordingToOutputFileURL:saveLocationURL recordingDelegate:self];
 
         }
         else
@@ -463,7 +463,7 @@ double timeToStop;
     }];
 }
 
-/*
+*/
 - (BOOL)isSessionRunningAndDeviceAuthorized
 {
 	return [[self session] isRunning] && [self isDeviceAuthorized];
@@ -503,8 +503,18 @@ double timeToStop;
 		
 		NSError *error = nil;
 		
-		AVCaptureDevice *videoDevice = [videoRecording deviceWithMediaType:AVMediaTypeVideo preferringPosition:AVCaptureDevicePositionFront];
-		AVCaptureDeviceInput *videoDeviceInput = [AVCaptureDeviceInput deviceInputWithDevice:videoDevice error:&error];
+        //NSError *error;
+        //AVCaptureDeviceInput *videoInput = [self videoInput];
+        AVCaptureDeviceInput *VideoInputDevice;
+        AVCaptureDeviceInput *videoDeviceInput;
+        AVCaptureDevicePosition position = [[VideoInputDevice device] position];
+        if (position == AVCaptureDevicePositionBack)
+        {
+            videoDeviceInput = [[AVCaptureDeviceInput alloc] initWithDevice:[videoRecording deviceWithMediaType:AVMediaTypeVideo preferringPosition:AVCaptureDevicePositionFront] error:&error];
+        }
+        
+		//AVCaptureDevice *videoDevice = [videoRecording deviceWithMediaType:AVMediaTypeVideo preferringPosition:AVCaptureDevicePositionFront];
+		//AVCaptureDeviceInput *videoDeviceInput = [AVCaptureDeviceInput deviceInputWithDevice:videoDevice error:&error];
 		
 		if (error)
 		{
@@ -634,15 +644,11 @@ double timeToStop;
         dispatch_async(dispatch_get_main_queue(), ^{
             if (isRunning)
             {
-                
                 [[self recordButton] setEnabled:YES];
-                
             }
             else
             {
-               
                 [[self recordButton] setEnabled:NO];
-                
             }
         });
     }
@@ -806,8 +812,19 @@ double timeToStop;
             [[[self movieFileOutput] connectionWithMediaType:AVMediaTypeVideo] setVideoOrientation:[[(AVCaptureVideoPreviewLayer *)[[self previewView] layer] connection] videoOrientation]];
             
             // Start recording to a temporary file.
-            NSString *outputFilePath = [NSTemporaryDirectory() stringByAppendingPathComponent:[@"movie" stringByAppendingPathExtension:@"mov"]];
-            [[self movieFileOutput] startRecordingToOutputFileURL:[NSURL fileURLWithPath:outputFilePath] recordingDelegate:self];
+//            NSString *outputFilePath = [NSTemporaryDirectory() stringByAppendingPathComponent:[@"movie" stringByAppendingPathExtension:@"mov"]];
+//            [[self movieFileOutput] startRecordingToOutputFileURL:[NSURL fileURLWithPath:outputFilePath] recordingDelegate:self];
+            
+                NSString *DestFilename = @"movie.mov";
+        
+                NSLog(@"Starting recording to file: %@", DestFilename);
+                NSString *DestPath;
+                NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+                DestPath = [paths objectAtIndex:0];
+                DestPath = [DestPath stringByAppendingPathComponent:DestFilename];
+            
+                NSURL* saveLocationURL = [[NSURL alloc] initFileURLWithPath:DestPath];
+                [[self movieFileOutput] startRecordingToOutputFileURL:saveLocationURL recordingDelegate:self];
         }
         else
         {
@@ -827,7 +844,7 @@ double timeToStop;
         
     });
 }
-*/
+
 - (IBAction)viditure:(id)sender {
 //    NSString *outputFilePath = [NSTemporaryDirectory() stringByAppendingPathComponent:[@"movie" stringByAppendingPathExtension:@"mov"]];
 //    [[self movieFileOutput] startRecordingToOutputFileURL:[NSURL fileURLWithPath:outputFilePath] recordingDelegate:self];

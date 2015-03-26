@@ -17,28 +17,26 @@
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
+
+    NSURL *video = [self grabFileURL:@"movie.mov"];
+    NSLog(@"out condition");
+    _moviePlayer = [[MPMoviePlayerController alloc]initWithContentURL:video];
+    _moviePlayer.view.frame = CGRectMake(0, 125, 320, 245);
+    [self.view addSubview:_moviePlayer.view];
+    [_moviePlayer play];
+ 
+}
+
+- (NSURL*)grabFileURL:(NSString *)fileName {
     
-    NSString *documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentationDirectory, NSUserDomainMask, YES)objectAtIndex:0];
-    NSString *file = [documentPath stringByAppendingPathComponent:@"movie.mov"];
-    NSURL *url = [NSURL fileURLWithPath:file];
+    NSString *DestPath;
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    DestPath = [paths objectAtIndex:0];
+    DestPath = [DestPath stringByAppendingPathComponent:fileName];
     
-    BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:file];
-    if(fileExists)
-    {
-        _moviePlayer = [[MPMoviePlayerController alloc]initWithContentURL:url];
-        _moviePlayer.view.frame = CGRectMake(20, 80, 280, 260);
-         [self.view addSubview:_moviePlayer.view];
-         [_moviePlayer play];
-    }
+    NSURL* saveLocationURL = [[NSURL alloc] initFileURLWithPath:DestPath];
     
-    //NSString *url = [[NSBundle mainBundle]pathForResource:@"movie" ofType:@"mov"];
-    
-//    _moviePlayer =[[MPMoviePlayerController alloc]initWithContentURL:[NSURL fileURLWithPath:url]];
-//    
-//    _moviePlayer.view.frame = CGRectMake(20, 80, 280, 260);
-//    [self.view addSubview:_moviePlayer.view];
-//    [_moviePlayer play];
-    
+    return saveLocationURL;
 }
 
 - (IBAction)video_viditured:(id)sender {

@@ -107,15 +107,15 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
 			[session addInput:audioDeviceInput];
 		}
 		
-		AVCaptureMovieFileOutput *movieFileOutput = [[AVCaptureMovieFileOutput alloc] init];
-		if ([session canAddOutput:movieFileOutput])
-		{
-			[session addOutput:movieFileOutput];
-			AVCaptureConnection *connection = [movieFileOutput connectionWithMediaType:AVMediaTypeVideo];
-			if ([connection isVideoStabilizationSupported])
-				[connection setEnablesVideoStabilizationWhenAvailable:YES];
-			[self setMovieFileOutput:movieFileOutput];
-		}
+//		AVCaptureMovieFileOutput *movieFileOutput = [[AVCaptureMovieFileOutput alloc] init];
+//		if ([session canAddOutput:movieFileOutput])
+//		{
+//			[session addOutput:movieFileOutput];
+//			AVCaptureConnection *connection = [movieFileOutput connectionWithMediaType:AVMediaTypeVideo];
+//			if ([connection isVideoStabilizationSupported])
+//				[connection setEnablesVideoStabilizationWhenAvailable:YES];
+//			[self setMovieFileOutput:movieFileOutput];
+//		}
 		
 	});
 }
@@ -290,13 +290,7 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
 		}
 	}];
 }
-//- (IBAction)Back:(id)sender {
-//    
-//    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//    UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"document"];
-//    vc.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-//    [self presentViewController:vc animated:YES completion:nil];
-//}
+
 - (IBAction)esignature_instead:(id)sender {
     second = [[secondPopUp alloc] initWithNibName:@"Second" bundle:nil];
     second.alphaValue = 0.6f;
@@ -305,7 +299,8 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
     [second showInView:self.view animated:YES];
 
 }
-- (IBAction)backTime:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+
+- (IBAction)record_button:(id)sender {
+    [self performSegueWithIdentifier:@"recording_time" sender:self];
 }
 @end
