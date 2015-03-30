@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *initials;
 
 - (IBAction)remove:(id)sender;
+@property (weak, nonatomic) IBOutlet UIDatePicker *dataPicker;
 
 +(NSString *)returnRequiredString;
 @end

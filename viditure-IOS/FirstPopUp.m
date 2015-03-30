@@ -33,6 +33,8 @@ static NSString *requiredString;
 {
     requiredString = @"No value";
     
+    [self.dataPicker addTarget:self action:@selector(datePickerChanged:) forControlEvents:UIControlEventValueChanged];
+    
     self.view.backgroundColor=[[UIColor blackColor] colorWithAlphaComponent:.6];
     self.popUpView.layer.cornerRadius = 5;
     self.popUpView.layer.shadowOpacity = 0.8;
@@ -136,6 +138,16 @@ static NSString *requiredString;
 
 +(NSString *)returnRequiredString{
     return requiredString;
+}
+
+
+
+- (void)datePickerChanged:(UIDatePicker *)datePicker
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"dd-MM-yyyy"];
+    NSString *strDate = [dateFormatter stringFromDate:datePicker.date];
+    //self.selectedDate.text = strDate;
 }
 
 @end
