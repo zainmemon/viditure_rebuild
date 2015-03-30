@@ -45,6 +45,7 @@
     NSString * docImage;
     UIActivityIndicatorView *progress;
     UILabel *progressStatus;
+    WebService *web;
     
 }
 @end
@@ -89,13 +90,19 @@ static NSMutableArray *Data;
     fields_count = 0;
     label_count = 100;
     
+    web = [[WebService alloc]init];
+    completeData = [web FilePath:@"https://test.viditure.com/vts/signrequest/55054c90e4b0bc31b3157e5a"parameterOne:nil];
+    
     // initializations end //
     
-    NSThread* myThread = [[NSThread alloc] initWithTarget:self
+    if(completeData !=nil)
+    {
+        
+        NSThread* myThread = [[NSThread alloc] initWithTarget:self
                                                  selector:@selector(LoadPages)
                                                    object:nil];
-    [myThread start];  // Actually create the thread
-    
+        [myThread start];  // Actually create the thread
+    }
     signature.delegate = self;
     
     [[self scroll]setMaximumZoomScale:3.0f];
@@ -142,19 +149,22 @@ static NSMutableArray *Data;
 
 -(void) LoadPages
 {
-    
-    WebService *web = [[WebService alloc]init];
-    completeData = [web FilePath:@"https://test.viditure.com/vts/signrequest/55054c90e4b0bc31b3157e5a"parameterOne:nil];
+
     Data = [completeData valueForKey:@"dataArray"];
     NSString *authTokenValue = [[completeData valueForKey:@"Headers"]valueForKey:@"X-Auth-Token"];
     unsigned long pages_length = [[Data valueForKey:@"pages"]count];
-    unsigned long fields_length;
+    unsigned long no_of_fields;
     tempView = [[UIView alloc]initWithFrame:CGRectMake(0,0,320,pages_length * 400)];
+    
+    self.scroll.contentSize = CGSizeMake(320,pages_length * 400);
+    self.scroll.showsVerticalScrollIndicator = YES;
+    self.scroll.showsHorizontalScrollIndicator = NO;
+
     
     for(int i =0;i<1;i++){
           //  NSLog(@"the _id is: %@",[[[Data valueForKey:@"pages"]valueForKey:@"pageImage_url"] objectAtIndex:i]);
     
-        fields_length = [[[[Data valueForKey:@"pages"]objectAtIndex:i] valueForKey:@"fields"] count];
+        no_of_fields = [[[[Data valueForKey:@"pages"]objectAtIndex:i] valueForKey:@"fields"] count];
         
         pagesImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0,i*400, 320, 400)];
         
@@ -171,9 +181,16 @@ static NSMutableArray *Data;
         width_ratio = 320 / page_width;
         height_ratio = 400 / page_height;
         
-        
+    [self.scroll addSubview:tempView];
+    [self field_load:i feildCount:no_of_fields];
+    [self.view addSubview:self.scroll];
+    }
+}
+
+-(void)field_load:(int)i feildCount:(long)fields_length
+{
     if(fields_length>0){
-        for(int k=0; k <1; k ++){
+        for(int k=0; k <fields_length; k ++){
             
             fields_count += 1;
             label_count +=1;
@@ -181,11 +198,11 @@ static NSMutableArray *Data;
             [FieldType addObject:[[[[[[Data valueForKey:@"pages"]valueForKey:@"fields"]objectAtIndex:i]valueForKey:@"kind"]valueForKey:@"type"]objectAtIndex:k]];
             
             field_top = [[[[[[[Data valueForKey:@"pages"]valueForKey:@"fields"]valueForKey:@"screenPos"]objectAtIndex:i]valueForKey:@"top"] objectAtIndex:k]floatValue];
-          //  field_bottom = [[[[[[[Data valueForKey:@"pages"]valueForKey:@"fields"]valueForKey:@"screenPos"]objectAtIndex:0]valueForKey:@"bottom"] objectAtIndex:k]floatValue];
+            //  field_bottom = [[[[[[[Data valueForKey:@"pages"]valueForKey:@"fields"]valueForKey:@"screenPos"]objectAtIndex:0]valueForKey:@"bottom"] objectAtIndex:k]floatValue];
             field_left = [[[[[[[Data valueForKey:@"pages"]valueForKey:@"fields"]valueForKey:@"screenPos"]objectAtIndex:i]valueForKey:@"left"] objectAtIndex:k]floatValue];
             field_width = [[[[[[[Data valueForKey:@"pages"]valueForKey:@"fields"]valueForKey:@"screenPos"]objectAtIndex:i]valueForKey:@"width"] objectAtIndex:k]floatValue];
             field_height =[[[[[[[Data valueForKey:@"pages"]valueForKey:@"fields"]valueForKey:@"screenPos"]objectAtIndex:i]valueForKey:@"height"] objectAtIndex:k]floatValue];
-
+            
             UiElement_width = field_width * width_ratio;
             UiElement_height = field_height * height_ratio;
             
@@ -198,7 +215,7 @@ static NSMutableArray *Data;
             //field_left * width_ratio,field_top * height_ratio
             
             ArrowimageView = [[UIImageView alloc]initWithFrame:CGRectMake((field_left *width_ratio) ,((field_top * height_ratio)-(field_height *height_ratio)+ i*400),UiElement_width,UiElement_height)];
-
+            
             ArrowimageView.image = ArrowImg;
             
             UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc]
@@ -208,31 +225,24 @@ static NSMutableArray *Data;
             ArrowimageView.userInteractionEnabled = YES;
             ArrowimageView.tag = fields_count;
             [ArrowimageView addGestureRecognizer:tapRecognizer];
-
+            
             [tempView addSubview:ArrowimageView];
-
-            returnedText = [[UILabel alloc]initWithFrame:CGRectMake((field_left *width_ratio) ,((field_top * height_ratio)-(field_height *height_ratio)+ i*400 +5),200,20)];
+            
+            returnedText = [[UILabel alloc]initWithFrame:CGRectMake((field_left *width_ratio) ,((field_top * height_ratio)-(field_height *height_ratio)+ i*400),UiElement_width+50,UiElement_height)];
             
             returnedText.text = @"";
             returnedText.textColor = [UIColor blackColor];
-            returnedText.font = [UIFont fontWithName:@"Calibri" size:12.0];
+            returnedText.font = [UIFont fontWithName:@"Calibri" size:9.0];
             returnedText.tag = label_count;
             [tempView addSubview:returnedText];
             
-            }
         }
-    
-    //[tempView addSubview:signature];
-    [self.scroll addSubview:tempView];
-    
     }
-    self.scroll.contentSize = CGSizeMake(320,pages_length * 400);
-    self.scroll.showsVerticalScrollIndicator = YES;
-    self.scroll.showsHorizontalScrollIndicator = NO;
     
     [self.view addSubview:self.scroll];
     [progress stopAnimating];
     [progressStatus removeFromSuperview];
+
 }
 
 -(UIView *) viewForZoomingInScrollView:(UIScrollView *)scrollView
@@ -252,9 +262,10 @@ static NSMutableArray *Data;
     NSLog(@"the returned string is %@",returnedString);
     
     UITapGestureRecognizer *tapRecognizer = (UITapGestureRecognizer *)sender;
-    int clicked = [tapRecognizer.view tag]+100;
-    NSLog(@"the clicked one is %d",clicked);
+    long clicked = [tapRecognizer.view tag]+100;
+    NSLog(@"the clicked one is %ld",clicked);
     returnedText = (UILabel *)[tempView viewWithTag:clicked];
+    ArrowimageView = (UIImageView *)[tempView viewWithTag:[tapRecognizer.view tag]];
 
     if([[FieldType objectAtIndex:[tapRecognizer.view tag]-1] isEqualToString:@"TEXT"])
     {
@@ -269,6 +280,7 @@ static NSMutableArray *Data;
             
             returnedText.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"name"];
             returnedText.textColor = [UIColor blackColor];
+            [ArrowimageView removeFromSuperview];
         }
     }
     else if ([[FieldType objectAtIndex:[tapRecognizer.view tag]-1] isEqualToString:@"VIDEO"])
@@ -283,6 +295,8 @@ static NSMutableArray *Data;
             
             returnedText.text = @"video";
             returnedText.textColor = [UIColor blackColor];
+            
+            [ArrowimageView removeFromSuperview];
         }
     }
     else if ([[FieldType objectAtIndex:[tapRecognizer.view tag]-1] isEqualToString:@"IMAGE"])
@@ -299,6 +313,8 @@ static NSMutableArray *Data;
            
             returnedText.text = @"image";
             returnedText.textColor = [UIColor blackColor];
+            
+            [ArrowimageView removeFromSuperview];
         }
     }
     else if ([[FieldType objectAtIndex:[tapRecognizer.view tag]-1] isEqualToString:@"DATE"])
@@ -314,6 +330,8 @@ static NSMutableArray *Data;
             
             returnedText.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"date"];
             returnedText.textColor = [UIColor blackColor];
+            
+            [ArrowimageView removeFromSuperview];
         }
     }
     

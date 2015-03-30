@@ -508,7 +508,7 @@ double timeToStop;
         AVCaptureDeviceInput *VideoInputDevice;
         AVCaptureDeviceInput *videoDeviceInput;
         AVCaptureDevicePosition position = [[VideoInputDevice device] position];
-        if (position == AVCaptureDevicePositionBack)
+        if (position == AVCaptureDevicePositionFront)
         {
             videoDeviceInput = [[AVCaptureDeviceInput alloc] initWithDevice:[videoRecording deviceWithMediaType:AVMediaTypeVideo preferringPosition:AVCaptureDevicePositionFront] error:&error];
         }
@@ -742,19 +742,15 @@ double timeToStop;
 
 + (AVCaptureDevice *)deviceWithMediaType:(NSString *)mediaType preferringPosition:(AVCaptureDevicePosition)position
 {
-	NSArray *devices = [AVCaptureDevice devicesWithMediaType:mediaType];
-	AVCaptureDevice *captureDevice = [devices firstObject];
-	
-	for (AVCaptureDevice *device in devices)
-	{
-		if ([device position] == position)
-		{
-			captureDevice = device;
-			break;
-		}
-	}
-	
-	return captureDevice;
+    NSArray *devices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
+    AVCaptureDevice *captureDevice = [devices firstObject];
+    for (AVCaptureDevice *device in devices) {
+        if ([device position] == AVCaptureDevicePositionBack) {
+            captureDevice = device;
+            break;
+        }
+    }
+    return captureDevice;
 }
 
 #pragma mark UI

@@ -129,11 +129,17 @@
                                     <action selector="vidture_action:" destination="Wf4-lZ-Rb7" eventType="touchUpInside" id="mZv-Dp-VMf"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hiC-3k-trL">
+                                <rect key="frame" x="177" y="67" width="40" height="35"/>
+                                <state key="normal" backgroundImage="camera">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="clip" translatesAutoresizingMaskIntoConstraints="NO" id="2zz-sZ-2ps">
-                                <rect key="frame" x="255" y="67" width="40" height="40"/>
+                                <rect key="frame" x="260" y="67" width="35" height="35"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="print" translatesAutoresizingMaskIntoConstraints="NO" id="Xk3-hl-Zez">
-                                <rect key="frame" x="212" y="67" width="40" height="40"/>
+                                <rect key="frame" x="220" y="67" width="35" height="35"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="doc#" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Wi-g3-qkh">
                                 <rect key="frame" x="25" y="76" width="39" height="21"/>
@@ -142,7 +148,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A3v-TS-Sbx">
-                                <rect key="frame" x="0.0" y="65" width="320" height="376"/>
+                                <rect key="frame" x="0.0" y="67" width="320" height="376"/>
                                 <connections>
                                     <outlet property="delegate" destination="Wf4-lZ-Rb7" id="WPZ-AL-Gnn"/>
                                 </connections>
@@ -181,13 +187,13 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Step 1: test your camera" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vXC-le-Jf9">
-                                <rect key="frame" x="20" y="76" width="280" height="21"/>
+                                <rect key="frame" x="20" y="71" width="280" height="48"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.29411764709999999" green="0.63529411759999999" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hzd-GW-C0U">
-                                <rect key="frame" x="94" y="386" width="133" height="30"/>
+                                <rect key="frame" x="98" y="440" width="125" height="30"/>
                                 <color key="backgroundColor" red="0.29411764709999999" green="0.63529411759999999" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Vidture It">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -203,7 +209,7 @@
                                 <gestureRecognizers/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sCK-dt-85c">
-                                <rect key="frame" x="32" y="428" width="257" height="33"/>
+                                <rect key="frame" x="20" y="382" width="280" height="48"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="I want to do esignature instead">
                                     <color key="titleColor" red="0.29411764709999999" green="0.63529411759999999" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -427,6 +433,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="camera" width="112" height="94"/>
         <image name="clip" width="63" height="61"/>
         <image name="print" width="63" height="61"/>
     </resources>
