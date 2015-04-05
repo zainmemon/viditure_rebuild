@@ -144,9 +144,20 @@ static NSString *requiredString;
 
 - (void)datePickerChanged:(UIDatePicker *)datePicker
 {
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"dd-MM-yyyy"];
-    NSString *strDate = [dateFormatter stringFromDate:datePicker.date];
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDate *currentDate = [NSDate date];
+    NSDateComponents *comps = [[NSDateComponents alloc] init];
+    [comps setYear:0];
+    NSDate *maxDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
+    [comps setYear:0];
+    NSDate *minDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
+    
+    [datePicker setMaximumDate:maxDate];
+    [datePicker setMinimumDate:minDate];
+    
+    //NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+   // [dateFormatter setDateFormat:@"dd-MM-yyyy"];
+   // NSString *strDate = [dateFormatter stringFromDate:datePicker.date];
     //self.selectedDate.text = strDate;
 }
 
