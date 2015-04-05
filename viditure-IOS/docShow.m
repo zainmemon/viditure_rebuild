@@ -73,10 +73,10 @@ static NSMutableArray *Data;
     
     // initializations begin //
     
-    progress = [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(130, 200, 50, 50)];
+    progress = [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(130, 230, 50, 50)];
     progress.color = [UIColor blackColor];
     
-    progressStatus = [[UILabel alloc]initWithFrame:CGRectMake(100, 230, 200, 50)];
+    progressStatus = [[UILabel alloc]initWithFrame:CGRectMake(100, 260, 200, 50)];
     progressStatus.text = @"Loading Pages";
     progressStatus.font = [UIFont fontWithName:@"Calibri" size:13.0];
     progressStatus.textColor = [UIColor blackColor];
@@ -161,7 +161,7 @@ static NSMutableArray *Data;
     self.scroll.showsHorizontalScrollIndicator = NO;
 
     
-    for(int i =0;i<1;i++){
+    for(int i =0;i<pages_length;i++){
           //  NSLog(@"the _id is: %@",[[[Data valueForKey:@"pages"]valueForKey:@"pageImage_url"] objectAtIndex:i]);
     
         no_of_fields = [[[[Data valueForKey:@"pages"]objectAtIndex:i] valueForKey:@"fields"] count];
@@ -181,8 +181,9 @@ static NSMutableArray *Data;
         width_ratio = 320 / page_width;
         height_ratio = 400 / page_height;
         
+        //[self field_load:i feildCount:no_of_fields];
     [self.scroll addSubview:tempView];
-    [self field_load:i feildCount:no_of_fields];
+    
     [self.view addSubview:self.scroll];
     }
 }
@@ -340,6 +341,13 @@ static NSMutableArray *Data;
 - (IBAction)unwindToVC1:(UIStoryboardSegue*)sender
 {
     
+}
+
+- (IBAction)edit:(id)sender
+{
+    firstPop = [[FirstPopUp alloc] initWithNibName:@"FirstPopUp" bundle:nil];
+    [firstPop showInView:self.view animated:YES];
+    NSLog(@"Just Returned");
 }
 
 +(NSMutableArray *)returnDataArray

@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FirstPopUp">
             <connections>
                 <outlet property="DATE" destination="JWd-pi-AyC" id="xeS-nA-XSK"/>
+                <outlet property="SelectedDate" destination="Wfg-tH-kNK" id="F6F-N7-fbF"/>
                 <outlet property="dataPicker" destination="cEt-xf-kX0" id="kJk-5r-VI3"/>
                 <outlet property="initials" destination="G4p-X8-HGQ" id="dkJ-wS-JBp"/>
                 <outlet property="name" destination="PLE-fx-1GH" id="HMX-04-asF"/>
@@ -24,16 +25,24 @@
                     <rect key="frame" x="19" y="130" width="282" height="267"/>
                     <subviews>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Agree to viditure terms and conditions" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="165" translatesAutoresizingMaskIntoConstraints="NO" id="ahX-l1-vRw">
+<<<<<<< HEAD
                             <rect key="frame" x="85" y="5" width="165" height="42"/>
+=======
+                            <rect key="frame" x="85" y="8" width="165" height="42"/>
+>>>>>>> FETCH_HEAD
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" red="0.29411764709999999" green="0.63529411759999999" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tick" translatesAutoresizingMaskIntoConstraints="NO" id="Wjc-Y1-Q9e">
+<<<<<<< HEAD
                             <rect key="frame" x="32" y="5" width="47" height="42"/>
+=======
+                            <rect key="frame" x="32" y="8" width="47" height="42"/>
+>>>>>>> FETCH_HEAD
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5H8-c6-1KK">
-                            <rect key="frame" x="147" y="220" width="95" height="30"/>
+                            <rect key="frame" x="147" y="233" width="95" height="30"/>
                             <color key="backgroundColor" red="0.29411764709999999" green="0.63529411759999999" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
                             <state key="normal" title="Viditure">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -44,7 +53,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vx1-a9-43p">
-                            <rect key="frame" x="40" y="220" width="96" height="30"/>
+                            <rect key="frame" x="40" y="233" width="96" height="30"/>
                             <color key="backgroundColor" red="0.29411764709999999" green="0.63529411759999999" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
                             <state key="normal" title="Cancel">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -55,26 +64,49 @@
                             </connections>
                         </button>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="INITIALS" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="G4p-X8-HGQ">
+<<<<<<< HEAD
                             <rect key="frame" x="32" y="107" width="218" height="24"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
                         <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="cEt-xf-kX0">
                             <rect key="frame" x="17" y="136" width="247" height="50"/>
+=======
+                            <rect key="frame" x="32" y="84" width="218" height="24"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="cEt-xf-kX0">
+                            <rect key="frame" x="17" y="145" width="247" height="70"/>
+>>>>>>> FETCH_HEAD
                             <date key="date" timeIntervalSinceReferenceDate="449416327.90103602">
                                 <!--2015-03-30 13:52:07 +0000-->
                             </date>
                         </datePicker>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wfg-tH-kNK">
+                            <rect key="frame" x="39" y="115" width="200" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                 </view>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="FULL NAME" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PLE-fx-1GH">
+<<<<<<< HEAD
                     <rect key="frame" x="51" y="178" width="218" height="24"/>
+=======
+                    <rect key="frame" x="51" y="185" width="218" height="24"/>
+>>>>>>> FETCH_HEAD
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="DATE" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JWd-pi-AyC">
+<<<<<<< HEAD
                     <rect key="frame" x="51" y="207" width="218" height="24"/>
+=======
+                    <rect key="frame" x="51" y="98" width="218" height="24"/>
+>>>>>>> FETCH_HEAD
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
