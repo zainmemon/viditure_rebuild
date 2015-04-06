@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:viditure.xcodeproj">
+      location = "self:viditure-IOS.xcodeproj">
    </FileRef>
 </Workspace>

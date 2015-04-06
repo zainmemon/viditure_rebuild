@@ -296,14 +296,14 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0510;
-				ORGANIZATIONNAME = Avialdo;
+				ORGANIZATIONNAME = "Zohair Hemani";
 				TargetAttributes = {
 					DCCC8BF819A6149900FEE79A = {
 						TestTargetID = DCCC8BD719A6149900FEE79A;
 					};
 				};
 			};
-			buildConfigurationList = DCCC8BD319A6149900FEE79A /* Build configuration list for PBXProject "viditure" */;
+			buildConfigurationList = DCCC8BD319A6149900FEE79A /* Build configuration list for PBXProject "viditure-IOS" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -494,7 +494,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "viditure-IOS/viditure-IOS-Prefix.pch";
 				INFOPLIST_FILE = "viditure-IOS/viditure-IOS-Info.plist";
@@ -509,7 +508,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "viditure-IOS/viditure-IOS-Prefix.pch";
 				INFOPLIST_FILE = "viditure-IOS/viditure-IOS-Info.plist";
@@ -562,7 +560,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		DCCC8BD319A6149900FEE79A /* Build configuration list for PBXProject "viditure" */ = {
+		DCCC8BD319A6149900FEE79A /* Build configuration list for PBXProject "viditure-IOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DCCC8C0819A6149900FEE79A /* Debug */,

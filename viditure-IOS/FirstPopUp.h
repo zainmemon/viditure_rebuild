@@ -24,7 +24,6 @@
 
 - (IBAction)remove:(id)sender;
 @property (weak, nonatomic) IBOutlet UIDatePicker *dataPicker;
-@property (weak, nonatomic) IBOutlet UILabel *SelectedDate;
 
 +(NSString *)returnRequiredString;
 @end

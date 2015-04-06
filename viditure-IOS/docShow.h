@@ -19,7 +19,6 @@
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scroll;
 @property (nonatomic, retain) NSString* inputData;
-- (IBAction)edit:(id)sender;
 
 +(NSMutableArray *)returnDataArray;
 @end

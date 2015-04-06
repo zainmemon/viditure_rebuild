@@ -115,7 +115,7 @@ static NSString *requiredString;
 - (IBAction)OkayPressed:(id)sender {
 
     [[NSUserDefaults standardUserDefaults] setObject:self.name.text forKey:@"name"];
-    [[NSUserDefaults standardUserDefaults] setObject:self.SelectedDate.text forKey:@"date"];
+    [[NSUserDefaults standardUserDefaults] setObject:self.DATE.text forKey:@"date"];
     [[NSUserDefaults standardUserDefaults] setObject:self.initials.text forKey:@"initials"];
 
     [self removeAnimate];
@@ -144,7 +144,6 @@ static NSString *requiredString;
 
 - (void)datePickerChanged:(UIDatePicker *)datePicker
 {
-<<<<<<< HEAD
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     NSDate *currentDate = [NSDate date];
     NSDateComponents *comps = [[NSDateComponents alloc] init];
@@ -160,24 +159,6 @@ static NSString *requiredString;
    // [dateFormatter setDateFormat:@"dd-MM-yyyy"];
    // NSString *strDate = [dateFormatter stringFromDate:datePicker.date];
     //self.selectedDate.text = strDate;
-=======
-    NSDate *minDate = [NSDate new];
-    // One hour from now
-    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    NSDate *currentDate = [NSDate date];
-    NSDateComponents *comps = [[NSDateComponents alloc] init];
-    [comps setYear:30];
-    NSDate *maxDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
-
-    [datePicker setDatePickerMode:UIDatePickerModeDate];
-    [datePicker setMinimumDate:minDate];
-    [datePicker setMaximumDate:maxDate];
-    
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"dd-MM-yyyy"];
-    NSString *strDate = [dateFormatter stringFromDate:datePicker.date];
-    self.SelectedDate.text = strDate;
->>>>>>> FETCH_HEAD
 }
 
 @end
