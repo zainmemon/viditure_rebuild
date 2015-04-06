@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="XrG-Lc-rp8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="12E4022" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="XrG-Lc-rp8">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <deployment defaultVersion="1552" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--Register-->
@@ -106,7 +106,7 @@
             </objects>
             <point key="canvasLocation" x="1202" y="142"/>
         </scene>
-        <!--Document-->
+        <!--Doc Show - Document-->
         <scene sceneID="cDB-ZQ-rvP">
             <objects>
                 <viewController id="Wf4-lZ-Rb7" customClass="docShow" sceneMemberID="viewController">
@@ -134,6 +134,9 @@
                                 <state key="normal" backgroundImage="camera">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="editButtonClick:" destination="Wf4-lZ-Rb7" eventType="touchUpInside" id="Nj6-cZ-Q5W"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="clip" translatesAutoresizingMaskIntoConstraints="NO" id="2zz-sZ-2ps">
                                 <rect key="frame" x="260" y="67" width="35" height="35"/>
@@ -174,7 +177,7 @@
             </objects>
             <point key="canvasLocation" x="3627" y="148"/>
         </scene>
-        <!--Test Camera-->
+        <!--Test Camera - Test Camera-->
         <scene sceneID="OUj-2p-OvM">
             <objects>
                 <viewController storyboardIdentifier="camera_time" id="FSW-Yh-ee7" customClass="TestCamera" sceneMemberID="viewController">
@@ -232,7 +235,7 @@
             </objects>
             <point key="canvasLocation" x="4057" y="148"/>
         </scene>
-        <!--Title-->
+        <!--Last Screen - Title-->
         <scene sceneID="EiI-s0-Y7X">
             <objects>
                 <viewController storyboardIdentifier="lastScreen" id="Beq-hC-Ya3" customClass="LastScreen" sceneMemberID="viewController">
@@ -271,7 +274,7 @@
             </objects>
             <point key="canvasLocation" x="4702" y="-529"/>
         </scene>
-        <!--Record Video-->
+        <!--Video Recording - Record Video-->
         <scene sceneID="STz-YF-Gj2">
             <objects>
                 <viewController id="e8D-9L-rb8" customClass="videoRecording" sceneMemberID="viewController">
@@ -339,7 +342,7 @@
             </objects>
             <point key="canvasLocation" x="4495" y="148"/>
         </scene>
-        <!--Play-->
+        <!--Video Playing - Play-->
         <scene sceneID="KcZ-Xn-lfv">
             <objects>
                 <viewController id="erY-ZP-RNH" customClass="videoPlaying" sceneMemberID="viewController">

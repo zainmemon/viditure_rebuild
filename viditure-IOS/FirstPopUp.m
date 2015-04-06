@@ -45,18 +45,12 @@ static NSString *requiredString;
     CGColorRef border_color = [[UIColor colorWithRed:198.0f/255.0f green:217.0f/255.0f blue:241.0f/255.0f alpha:1.0] CGColor];
     
     self.name.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"FULL NAME" attributes:@{NSForegroundColorAttributeName: color}];
-    
-    self.DATE.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"DATE" attributes:@{NSForegroundColorAttributeName: color}];
-    
+
     self.initials.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"INITIALS" attributes:@{NSForegroundColorAttributeName: color}];
     
     self.name.layer.borderColor= border_color;
     self.name.layer.borderWidth= 1.0f;
     self.name.delegate = self;
-    
-    self.DATE.layer.borderColor= border_color;
-    self.DATE.layer.borderWidth= 1.0f;
-    self.DATE.delegate = self;
     
     self.initials.layer.borderColor= border_color;
     self.initials.layer.borderWidth= 1.0f;
@@ -64,7 +58,7 @@ static NSString *requiredString;
     
     
     self.name.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"name"];
-    self.DATE.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"date"];
+    self.selectedDate.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"date"];
     self.initials.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"initials"];
     originalCenter = self.popUpView.center;
     [super viewDidLoad];
@@ -115,7 +109,7 @@ static NSString *requiredString;
 - (IBAction)OkayPressed:(id)sender {
 
     [[NSUserDefaults standardUserDefaults] setObject:self.name.text forKey:@"name"];
-    [[NSUserDefaults standardUserDefaults] setObject:self.DATE.text forKey:@"date"];
+    [[NSUserDefaults standardUserDefaults] setObject:self.selectedDate.text forKey:@"date"];
     [[NSUserDefaults standardUserDefaults] setObject:self.initials.text forKey:@"initials"];
 
     [self removeAnimate];
@@ -140,25 +134,24 @@ static NSString *requiredString;
     return requiredString;
 }
 
-
-
 - (void)datePickerChanged:(UIDatePicker *)datePicker
 {
+    NSDate *minDate = [NSDate new];
+    
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     NSDate *currentDate = [NSDate date];
     NSDateComponents *comps = [[NSDateComponents alloc] init];
-    [comps setYear:0];
+    [comps setYear:30];
     NSDate *maxDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
-    [comps setYear:0];
-    NSDate *minDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
     
+    [datePicker setDatePickerMode:UIDatePickerModeDate];
     [datePicker setMaximumDate:maxDate];
     [datePicker setMinimumDate:minDate];
     
-    //NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-   // [dateFormatter setDateFormat:@"dd-MM-yyyy"];
-   // NSString *strDate = [dateFormatter stringFromDate:datePicker.date];
-    //self.selectedDate.text = strDate;
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"dd-MM-yyyy"];
+    NSString *strDate = [dateFormatter stringFromDate:datePicker.date];
+    self.selectedDate.text = strDate;
 }
 
 @end

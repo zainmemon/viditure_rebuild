@@ -19,11 +19,11 @@
 - (void)showInView:(UIView *)aView animated:(BOOL)animated;
 - (IBAction)OkayPressed:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextField *name;
-@property (weak, nonatomic) IBOutlet UITextField *DATE;
 @property (weak, nonatomic) IBOutlet UITextField *initials;
 
 - (IBAction)remove:(id)sender;
 @property (weak, nonatomic) IBOutlet UIDatePicker *dataPicker;
+@property (weak, nonatomic) IBOutlet UILabel *selectedDate;
 
 +(NSString *)returnRequiredString;
 @end

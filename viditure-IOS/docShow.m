@@ -91,7 +91,7 @@ static NSMutableArray *Data;
     label_count = 100;
     
     web = [[WebService alloc]init];
-    completeData = [web FilePath:@"https://test.viditure.com/vts/signrequest/55054c90e4b0bc31b3157e5a"parameterOne:nil];
+    completeData = [web FilePath:@"http://dev.viditure.com/vts/signrequest/550a5b18e4b09b67f2cf689a"parameterOne:nil];
     
     // initializations end //
     
@@ -190,7 +190,7 @@ static NSMutableArray *Data;
 -(void)field_load:(int)i feildCount:(long)fields_length
 {
     if(fields_length>0){
-        for(int k=0; k <fields_length; k ++){
+        for(int k=0; k <1; k ++){
             
             fields_count += 1;
             label_count +=1;
@@ -342,10 +342,24 @@ static NSMutableArray *Data;
     
 }
 
+- (IBAction)editButtonClick:(id)sender
+{
+    NSString *myname = [[NSUserDefaults standardUserDefaults]valueForKey:@"name"];
+    
+    firstPop = [[FirstPopUp alloc] initWithNibName:@"FirstPopUp" bundle:nil];
+    [firstPop showInView:self.view animated:YES];
+    
+    if(![myname isEqualToString:[[NSUserDefaults standardUserDefaults]valueForKey:@"name"]])
+    {
+        NSLog(@"not equal");
+    }
+    
+    NSLog(@"out of edit button");
+}
+
 +(NSMutableArray *)returnDataArray
 {
     return Data;
 }
-
 
 @end
